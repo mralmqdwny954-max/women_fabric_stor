@@ -1,0 +1,350 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+
+<div class="page-header">
+
+    <h1>
+        إدارة التصنيفات
+    </h1>
+
+
+    <a href="/admin/categories/add" class="add-btn">
+        + إضافة تصنيف جديد
+    </a>
+
+
+</div>
+
+
+
+
+
+{% if request.query_params.get("error") == "has_products" %}
+
+
+<div style="
+background:#f8d7da;
+color:#721c24;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+text-align:center;
+font-weight:bold;
+">
+
+لا يمكن حذف هذا التصنيف لأنه يحتوي على منتجات، قم بإخفائه بدلًا من حذفه
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+<div class="table-container">
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+الصورة
+</th>
+
+
+<th>
+اسم التصنيف
+</th>
+
+
+<th>
+الوصف
+</th>
+
+
+<th>
+عدد المنتجات
+</th>
+
+
+<th>
+الحالة
+</th>
+
+
+<th>
+الإجراءات
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+<tbody>
+
+
+
+
+{% for category in categories %}
+
+
+
+
+<tr>
+
+
+
+
+<td>
+
+
+
+{% if category.image_path %}
+
+
+<img src="/{{ category.image_path }}"
+width="70"
+height="70"
+style="object-fit:cover;border-radius:10px;">
+
+
+
+{% else %}
+
+
+لا توجد صورة
+
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+
+{{ category.name }}
+
+
+</td>
+
+
+
+
+
+<td>
+
+
+{% if category.description %}
+
+
+{{ category.description }}
+
+
+{% else %}
+
+
+-
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+<td>
+
+{{ category.products_count }}
+
+</td>
+
+
+
+
+
+<td>
+
+
+
+{% if category.is_visible %}
+
+
+ظاهر
+
+
+{% else %}
+
+
+مخفي
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+
+
+<a href="/admin/categories/{{ category.id }}/edit"
+class="edit-btn">
+
+تعديل
+
+</a>
+
+
+
+
+<a href="/admin/categories/{{ category.id }}/delete"
+class="delete-btn"
+onclick="return confirm('هل أنت متأكد من حذف هذا التصنيف؟');">
+
+حذف
+
+</a>
+
+
+
+
+{% if category.is_visible %}
+
+
+
+
+<a href="/admin/categories/{{ category.id }}/hide"
+class="add-btn"
+onclick="return confirm('هل تريد إخفاء هذا التصنيف؟');">
+
+إخفاء
+
+</a>
+
+
+
+
+{% else %}
+
+
+
+
+<a href="/admin/categories/{{ category.id }}/show"
+class="add-btn"
+onclick="return confirm('هل تريد إظهار هذا التصنيف؟');">
+
+إظهار
+
+</a>
+
+
+
+
+{% endif %}
+
+
+
+
+<a href="/admin/categories/{{ category.id }}/products"
+class="add-btn">
+
+المنتجات
+
+</a>
+
+
+
+
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+{% else %}
+
+
+
+
+<tr>
+
+
+<td colspan="6">
+
+
+لا توجد تصنيفات
+
+
+</td>
+
+
+</tr>
+
+
+
+
+
+{% endfor %}
+
+
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}

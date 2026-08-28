@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+<h1>
+إثبات الدفع
+</h1>
+
+</div>
+
+
+
+<div class="table-container">
+
+
+<img
+
+src="/{{ order.payment_proof_path }}"
+
+style="
+width:100%;
+max-width:700px;
+border-radius:15px;
+display:block;
+margin:auto;
+"
+
+>
+
+
+
+<br><br>
+
+
+<a 
+href="/admin/orders/{{ order.id }}"
+class="add-btn">
+
+العودة إلى تفاصيل الطلب
+
+</a>
+
+
+</div>
+
+
+
+{% endblock %}

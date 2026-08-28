@@ -1,0 +1,800 @@
+/* =========================
+   الهوية والألوان
+========================= */
+
+:root {
+
+    --burgundy: #490119;
+    --burgundy-dark: #2B0612;
+    --gold: #C9A227;
+    --cream: #F8F3E8;
+    --beige: #EDE2D0;
+    --white: #ffffff;
+    --text: #3d2b2b;
+
+}
+
+
+/* =========================
+   إعدادات عامة
+========================= */
+
+* {
+
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+
+}
+
+
+body {
+
+    font-family: Tahoma, sans-serif;
+    background:var(--cream);
+    color:var(--text);
+    direction:rtl;
+
+}
+
+
+/* =========================
+   الهيكل الرئيسي
+========================= */
+
+.admin-container {
+
+    display:flex;
+    min-height:100vh;
+
+}
+
+
+
+/* =========================
+   القائمة الجانبية
+========================= */
+
+
+.sidebar {
+
+    width:260px;
+
+    background:linear-gradient(
+        180deg,
+        #490119,
+        #2B0612
+    );
+
+    color:white;
+
+    padding:30px 20px;
+
+
+    /* تثبيت القائمة الجانبية */
+    position:sticky;
+
+    top:0;
+
+    height:100vh;
+
+    overflow-y:auto;
+
+}
+
+
+
+.sidebar h2 {
+
+    text-align:center;
+    color:var(--gold);
+    font-size:28px;
+    margin-bottom:40px;
+
+}
+
+
+
+.sidebar ul {
+
+    list-style:none;
+
+}
+
+
+
+.sidebar li {
+
+    margin-bottom:15px;
+
+}
+
+
+
+.sidebar a {
+
+    display:block;
+    text-decoration:none;
+    color:white;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    transition:0.3s;
+
+}
+
+
+
+.sidebar a:hover {
+
+    background:var(--gold);
+
+    color:var(--burgundy);
+
+    transform:translateX(-5px);
+
+}
+
+
+
+/* =========================
+   المحتوى
+========================= */
+
+
+.content {
+
+    flex:1;
+
+    padding:40px;
+
+
+}
+
+
+
+/* =========================
+   العناوين
+========================= */
+
+
+.content h1 {
+
+    color:var(--burgundy);
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.content p {
+
+    color:#777;
+
+    margin-bottom:30px;
+
+}
+
+
+
+/* =========================
+   بطاقات لوحة التحكم
+========================= */
+
+
+.cards {
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+}
+
+
+
+.card {
+
+
+    background:white;
+
+    padding:35px 25px;
+
+    min-height:170px;
+
+    border-radius:25px;
+
+    position:relative;
+
+    border:1px solid rgba(201,162,39,0.35);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.08);
+
+
+    transition:0.3s;
+
+    overflow:hidden;
+
+
+}
+
+
+
+.card::before {
+
+
+    content:"";
+
+    position:absolute;
+
+    right:0;
+
+    top:0;
+
+    height:100%;
+
+    width:6px;
+
+    background:var(--gold);
+
+
+}
+
+
+
+.card:hover {
+
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 45px rgba(73,1,25,0.20);
+
+
+}
+
+
+
+.card h3 {
+
+    color:var(--burgundy);
+
+    font-size:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.card p {
+
+    color:var(--gold);
+
+    font-size:42px;
+
+    font-weight:bold;
+
+}
+
+
+
+/* =========================
+   صفحة المنتجات
+========================= */
+
+
+.page-header {
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+
+}
+
+
+
+.page-header h1 {
+
+
+    color:var(--burgundy);
+
+
+}
+
+
+
+/* زر إضافة */
+
+.add-btn {
+
+
+    background:var(--gold);
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+
+
+.add-btn:hover {
+
+
+    background:var(--burgundy);
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/* =========================
+   الجدول
+========================= */
+
+
+.table-container {
+
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+    overflow-x:auto;
+
+
+}
+
+
+
+table {
+
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:700px;
+
+
+}
+
+
+
+thead {
+
+
+    background:var(--burgundy);
+
+    color:white;
+
+
+}
+
+
+
+th {
+
+
+    padding:15px;
+
+
+}
+
+
+
+td {
+
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+
+}
+
+
+
+/* =========================
+   أزرار العمليات
+========================= */
+
+
+.edit-btn,
+.delete-btn {
+
+
+    border:none;
+
+    padding:8px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    margin:3px;
+
+
+}
+
+
+
+.edit-btn {
+
+
+    background:var(--gold);
+
+    color:white;
+
+
+}
+
+
+
+.delete-btn {
+
+
+    background:var(--burgundy);
+
+    color:white;
+
+
+}
+
+
+
+.edit-btn:hover,
+.delete-btn:hover {
+
+    transform:scale(1.05);
+
+    box-shadow:
+    0 8px 15px rgba(0,0,0,0.15);
+
+}
+
+
+.edit-btn:hover {
+
+    background:#dfb62e;
+
+}
+
+
+.delete-btn:hover {
+
+    background:#700025;
+
+}
+
+
+/* =========================
+   تجاوب الشاشات
+========================= */
+
+
+@media(max-width:1100px){
+
+
+    .cards {
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+
+}
+
+
+
+
+@media(max-width:700px){
+
+
+
+    .admin-container {
+
+
+        flex-direction:row;
+
+
+    }
+
+
+
+    .sidebar {
+
+
+        width:120px;
+
+        min-width:120px;
+
+        padding:20px 10px;
+
+
+    }
+
+
+
+    .sidebar h2 {
+
+
+        font-size:16px;
+
+        margin-bottom:25px;
+
+
+    }
+
+
+
+    .sidebar a {
+
+
+        font-size:13px;
+
+        padding:10px 5px;
+
+        text-align:center;
+
+
+    }
+
+
+
+    .content {
+
+
+        padding:15px;
+
+        min-width:0;
+
+
+    }
+
+
+
+    .content h1 {
+
+
+        font-size:25px;
+
+
+    }
+
+
+
+    .cards {
+
+
+        grid-template-columns:1fr;
+
+        gap:20px;
+
+
+    }
+
+
+
+    .card {
+
+
+        min-height:140px;
+
+
+    }
+
+
+
+}
+
+
+/* منع اختفاء الجداول */
+
+.table-container {
+
+    overflow-x:auto;
+
+}
+
+
+
+/* =========================
+   نموذج إضافة التصنيف
+========================= */
+
+
+form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+
+
+form label {
+
+    font-size: 18px;
+
+    color: var(--burgundy);
+
+    font-weight: bold;
+
+    margin-top: 10px;
+
+}
+
+
+
+form input,
+form textarea,
+form select {
+
+
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(73,1,25,0.2);
+
+    background: white;
+
+    font-size: 16px;
+
+    font-family: Tahoma;
+
+    outline: none;
+
+    transition: 0.3s;
+
+}
+
+
+
+form textarea {
+
+    min-height: 120px;
+
+    resize: vertical;
+
+}
+
+
+
+/* عند الضغط داخل الحقل */
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+
+
+    border-color: var(--gold);
+
+    box-shadow: 0 0 8px rgba(201,162,39,0.4);
+
+}
+
+
+
+/* زر الحفظ */
+
+form .add-btn {
+
+
+    width: 180px;
+
+    border: none;
+
+    cursor: pointer;
+
+    margin-top: 20px;
+
+}
+
+
+
+form .add-btn:hover {
+
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 20px rgba(201,162,39,0.3);
+
+}
+
+
+/* إزالة الخط من روابط الأزرار */
+
+.add-btn {
+    text-decoration: none;
+    display: inline-block;
+}
+/* إزالة الخط من جميع روابط لوحة التحكم */
+
+a {
+    text-decoration: none;
+}
+
+/* ==========================
+   إصلاح أزرار جدول المنتجات نهائيًا
+========================== */
+
+
+td.actions {
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    gap:12px !important;
+
+    align-items:center !important;
+
+    min-width:160px !important;
+
+}
+
+
+
+td.actions a {
+
+    width:120px !important;
+
+    height:40px !important;
+
+    display:flex !important;
+
+    justify-content:center !important;
+
+    align-items:center !important;
+
+    padding:0 !important;
+
+    margin:0 !important;
+
+    white-space:nowrap !important;
+
+}
+
+
+
+
+

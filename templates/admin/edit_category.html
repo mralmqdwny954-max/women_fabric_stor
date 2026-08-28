@@ -1,0 +1,150 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        تعديل التصنيف
+    </h1>
+
+</div>
+
+
+
+<div class="form-container">
+
+
+<form 
+method="post" 
+action="/admin/categories/{{ category.id }}/edit"
+enctype="multipart/form-data"
+>
+
+
+
+<label>
+اسم التصنيف
+</label>
+
+
+<input
+type="text"
+name="name"
+value="{{ category.name }}"
+required
+>
+
+
+
+<label>
+الوصف
+</label>
+
+
+<textarea
+name="description"
+>{{ category.description }}</textarea>
+
+
+
+<label>
+الصورة الحالية
+</label>
+
+
+{% if category.image_path %}
+
+<img
+src="/{{ category.image_path }}"
+width="150"
+height="150"
+style="object-fit:cover;border-radius:10px;"
+>
+
+{% else %}
+
+لا توجد صورة
+
+{% endif %}
+
+
+
+<label>
+تغيير الصورة (اختياري)
+</label>
+
+
+<input
+type="file"
+name="image"
+accept="image/*"
+>
+
+
+
+<label>
+الترتيب
+</label>
+
+
+<input
+type="number"
+name="display_order"
+value="{{ category.display_order }}"
+>
+
+
+
+<label>
+الحالة
+</label>
+
+
+<select name="is_visible">
+
+
+<option value="true"
+{% if category.is_visible %}
+selected
+{% endif %}
+>
+مفعّل
+</option>
+
+
+
+<option value="false"
+{% if not category.is_visible %}
+selected
+{% endif %}
+>
+غير مفعّل
+</option>
+
+
+</select>
+
+
+
+<button 
+type="submit"
+class="add-btn"
+>
+
+حفظ التعديل
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+{% endblock %}

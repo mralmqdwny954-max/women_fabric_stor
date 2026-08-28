@@ -1,0 +1,222 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        تعديل البنر
+    </h1>
+
+</div>
+
+
+
+<div class="form-container">
+
+
+<form 
+method="post" 
+action="/admin/banners/{{ banner.id }}/edit"
+enctype="multipart/form-data"
+>
+
+
+
+<label>
+العنوان
+</label>
+
+
+<input 
+type="text"
+name="title"
+value="{{ banner.title }}"
+>
+
+
+
+
+<label>
+الوصف
+</label>
+
+
+<textarea name="subtitle">{{ banner.subtitle }}</textarea>
+
+
+
+
+
+<label>
+الصورة الحالية
+</label>
+
+
+{% if banner.image_path %}
+
+
+<img
+src="/{{ banner.image_path }}"
+width="250"
+height="120"
+style="object-fit:cover;border-radius:10px;"
+>
+
+
+{% else %}
+
+
+لا توجد صورة
+
+
+{% endif %}
+
+
+
+
+
+<label>
+تغيير الصورة (اختياري)
+</label>
+
+
+<input 
+type="file"
+name="image"
+accept="image/*"
+>
+
+
+
+
+
+<label>
+الترتيب
+</label>
+
+
+<input 
+type="number"
+name="display_order"
+value="{{ banner.display_order }}"
+>
+
+
+
+
+
+<label>
+ظاهر
+</label>
+
+
+<input 
+type="checkbox"
+name="is_visible"
+
+{% if banner.is_visible %}
+
+checked
+
+{% endif %}
+
+>
+
+
+
+
+
+
+<label>
+نص الزر
+</label>
+
+
+<input 
+type="text"
+name="button_label"
+value="{{ banner.button_label }}"
+>
+
+
+
+
+
+
+<label>
+نوع رابط الزر
+</label>
+
+
+
+<select name="link_type">
+
+
+<option value="">
+بدون رابط
+</option>
+
+
+
+<option value="products">
+كل المنتجات
+</option>
+
+
+
+<option value="category">
+قسم معين
+</option>
+
+
+
+<option value="product">
+منتج معين
+</option>
+
+
+
+</select>
+
+
+
+
+
+
+<label>
+رقم القسم أو المنتج
+</label>
+
+
+
+<input 
+type="number"
+name="link_id"
+placeholder="مثال: 1"
+>
+
+
+
+
+<br>
+
+
+<button type="submit" class="add-btn">
+
+حفظ التعديل
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+{% endblock %}

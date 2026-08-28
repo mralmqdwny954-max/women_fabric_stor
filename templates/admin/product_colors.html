@@ -1,0 +1,299 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+
+<div class="page-header">
+
+
+    <h1>
+        ألوان المنتج: {{ product.name }}
+    </h1>
+
+
+
+    <a href="/admin/products/{{ product.id }}/colors/add" class="add-btn">
+
+        + إضافة لون جديد
+
+    </a>
+
+
+</div>
+
+
+
+
+
+<div class="table-container">
+
+
+
+<table>
+
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+اسم اللون
+</th>
+
+
+<th>
+الصورة
+</th>
+
+
+<th>
+الترتيب
+</th>
+
+
+<th>
+الحالة
+</th>
+
+
+<th>
+الإجراءات
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+<tbody>
+
+
+
+{% for color in colors %}
+
+
+
+
+<tr>
+
+
+
+
+<td>
+
+{{ color.color_name }}
+
+</td>
+
+
+
+
+
+<td>
+
+
+
+{% if color.image_path %}
+
+
+<img src="/{{ color.image_path }}"
+width="70"
+height="70"
+style="object-fit:cover;border-radius:10px;">
+
+
+
+{% else %}
+
+
+لا توجد صورة
+
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+{{ color.display_order }}
+
+</td>
+
+
+
+
+
+<td>
+
+
+
+{% if color.is_visible %}
+
+
+ظاهر
+
+
+{% else %}
+
+
+مخفي
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+
+
+
+<a 
+href="/admin/products/{{ product.id }}/colors/{{ color.id }}/edit"
+class="edit-btn">
+
+تعديل
+
+</a>
+
+
+
+
+
+<a 
+href="/admin/products/{{ product.id }}/colors/{{ color.id }}/delete"
+class="delete-btn"
+onclick="return confirm('هل أنت متأكد من حذف هذا اللون؟');">
+
+حذف
+
+</a>
+
+
+
+
+
+
+
+{% if color.is_visible %}
+
+
+
+
+<a 
+href="/admin/products/{{ product.id }}/colors/{{ color.id }}/hide"
+class="add-btn"
+onclick="return confirm('هل تريد إخفاء هذا اللون؟');">
+
+إخفاء
+
+</a>
+
+
+
+
+{% else %}
+
+
+
+
+<a 
+href="/admin/products/{{ product.id }}/colors/{{ color.id }}/show"
+class="add-btn"
+onclick="return confirm('هل تريد إظهار هذا اللون؟');">
+
+إظهار
+
+</a>
+
+
+
+
+{% endif %}
+
+
+
+
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+{% else %}
+
+
+
+
+
+<tr>
+
+
+<td colspan="5">
+
+
+لا توجد ألوان
+
+
+</td>
+
+
+</tr>
+
+
+
+
+
+{% endfor %}
+
+
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+{% endblock %}

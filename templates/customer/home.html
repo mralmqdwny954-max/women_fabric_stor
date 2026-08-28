@@ -1,0 +1,464 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+<div class="welcome-message">
+
+    <h3>
+        أهلاً وسهلاً بك في متجر بن سلمان للأقمشة والمطرزات
+    </h3>
+
+    <p>
+        حرصاً على راحتك، نعرض لك جميع الأسعار بالريال اليمني
+        مع ما يعادلها بالريال السعودي، لتتمكن من التسوق
+        بالطريقة المناسبة لك بكل سهولة ووضوح.
+    </p>
+
+</div>
+
+
+<!-- البنرات -->
+
+<section class="hero-slider">
+
+
+{% if banners %}
+
+
+<div class="horizontal-slider">
+
+
+{% for banner in banners %}
+
+
+<div class="hero-card">
+
+
+{% if loop.first %}
+
+<img
+src="/{{ banner.image_path }}"
+alt="{{ banner.title }}"
+width="1600"
+height="700"
+fetchpriority="high"
+decoding="async"
+>
+
+{% else %}
+
+<img
+src="/{{ banner.image_path }}"
+alt="{{ banner.title }}"
+width="1600"
+height="700"
+loading="lazy"
+decoding="async"
+>
+
+{% endif %}
+
+
+<div class="hero-info">
+
+
+<div class="royal-icon">
+♛
+</div>
+
+
+<h2>
+{{ banner.title }}
+</h2>
+
+
+<p>
+{{ banner.subtitle }}
+</p>
+
+
+{% if banner.button_label and banner.button_link %}
+
+<a href="{{ banner.button_link }}">
+{{ banner.button_label }}
+</a>
+
+{% endif %}
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+</div>
+
+
+{% endif %}
+
+
+</section>
+
+
+<!-- الأقسام -->
+
+
+<section class="home-section">
+
+
+<h2 class="section-title">
+♛ الأقسام
+</h2>
+
+
+<div class="categories-grid">
+
+
+{% for category in categories %}
+
+
+<div class="card-wrapper category-card">
+
+
+<div class="card-image">
+
+
+<img
+src="/{{ category.image_path }}"
+alt="{{ category.name }}"
+loading="lazy"
+decoding="async"
+>
+
+
+<div class="royal-icon">
+♛
+</div>
+
+
+</div>
+
+
+<div class="card-glass">
+
+
+<h3>
+{{ category.name }}
+</h3>
+
+
+<p>
+اختيار فاخر من أجمل الأقمشة
+</p>
+
+
+<a href="/category/{{ category.id }}">
+تصفح القسم
+</a>
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+</div>
+
+
+</section>
+
+
+<!-- المنتجات المميزة -->
+
+
+<section class="home-section">
+
+
+<h2 class="section-title">
+♛ المنتجات المميزة
+</h2>
+
+
+<div class="products-slider">
+
+
+{% for product in featured_products %}
+
+
+<div class="card-wrapper product-card">
+
+
+<div class="card-image">
+
+
+<img
+src="/{{ product.main_image_path }}"
+alt="{{ product.name }}"
+loading="lazy"
+decoding="async"
+>
+
+
+</div>
+
+
+<div class="card-glass">
+
+
+<h3>
+{{ product.name }}
+</h3>
+
+
+{% if product.sale_price %}
+
+
+<div class="product-price discount-price">
+
+
+<span class="old-price">
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+{{ product.regular_price|sar }} ر.س
+
+</span>
+
+
+<span class="new-price">
+
+{{ product.sale_price }} ر.ي
+
+<br>
+
+{{ product.sale_price|sar }} ر.س
+
+</span>
+
+
+</div>
+
+
+{% else %}
+
+
+<div class="product-price">
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+{{ product.regular_price|sar }} ر.س
+
+</div>
+
+
+{% endif %}
+
+
+<a href="/products/{{ product.id }}">
+عرض المنتج
+</a>
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+</div>
+
+
+</section>
+
+
+<!-- وصل حديثاً -->
+
+
+<section class="home-section">
+
+
+<h2 class="section-title">
+♛ وصل حديثاً
+</h2>
+
+
+<div class="products-slider">
+
+
+{% for product in new_products %}
+
+
+<div class="card-wrapper product-card">
+
+
+<div class="card-image">
+
+
+<img
+src="/{{ product.main_image_path }}"
+alt="{{ product.name }}"
+loading="lazy"
+decoding="async"
+>
+
+
+<div class="royal-icon">
+♛
+</div>
+
+
+</div>
+
+
+<div class="card-glass">
+
+
+<h3>
+{{ product.name }}
+</h3>
+
+
+{% if product.sale_price %}
+
+
+<div class="product-price discount-price">
+
+
+<span class="old-price">
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+{{ product.regular_price|sar }} ر.س
+
+</span>
+
+
+<span class="new-price">
+
+{{ product.sale_price }} ر.ي
+
+<br>
+
+{{ product.sale_price|sar }} ر.س
+
+</span>
+
+
+</div>
+
+
+{% else %}
+
+
+<div class="product-price">
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+{{ product.regular_price|sar }} ر.س
+
+</div>
+
+
+{% endif %}
+
+
+<a href="/products/{{ product.id }}">
+عرض المنتج
+</a>
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+</div>
+
+
+</section>
+
+
+<script>
+
+const slider = document.querySelector(".horizontal-slider");
+
+
+if (slider) {
+
+    let isDown = false;
+
+    let startX;
+
+    let scrollLeft;
+
+
+    slider.addEventListener("mousedown", (e) => {
+
+        isDown = true;
+
+        startX = e.pageX - slider.offsetLeft;
+
+        scrollLeft = slider.scrollLeft;
+
+    });
+
+
+    slider.addEventListener("mouseleave", () => {
+
+        isDown = false;
+
+    });
+
+
+    slider.addEventListener("mouseup", () => {
+
+        isDown = false;
+
+    });
+
+
+    slider.addEventListener("mousemove", (e) => {
+
+        if (!isDown) return;
+
+        e.preventDefault();
+
+        const x = e.pageX - slider.offsetLeft;
+
+        const walk = (x - startX) * 2;
+
+        slider.scrollLeft = scrollLeft - walk;
+
+    });
+
+}
+
+</script>
+
+
+{% endblock %}

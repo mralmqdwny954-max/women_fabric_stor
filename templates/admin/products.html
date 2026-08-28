@@ -1,0 +1,369 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+{% if error == "has_orders" %}
+
+<div style="
+background:#f8d7da;
+color:#721c24;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+text-align:center;
+font-weight:bold;
+">
+
+لا يمكن حذف هذا المنتج لأنه مرتبط بطلبات موجودة، قم بإخفائه بدلًا من حذفه
+
+</div>
+
+{% endif %}
+
+
+
+<div class="page-header">
+
+    <h1>
+        إدارة المنتجات
+    </h1>
+
+
+    <a href="/admin/products/add" class="add-btn">
+        + إضافة منتج جديد
+    </a>
+
+</div>
+
+
+
+
+<div class="table-container">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+الصورة
+</th>
+
+
+<th>
+كود المنتج
+</th>
+
+
+<th>
+اسم المنتج
+</th>
+
+
+<th>
+الوصف
+</th>
+
+
+<th>
+التصنيف
+</th>
+
+
+<th>
+السعر
+</th>
+
+
+<th>
+وحدة البيع
+</th>
+
+
+<th>
+الحالة
+</th>
+
+
+<th>
+الإجراءات
+</th>
+
+
+</tr>
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+{% for product in products %}
+
+
+
+<tr>
+
+
+<td>
+
+
+{% if product.main_image_path %}
+
+
+<img src="/{{ product.main_image_path }}"
+width="80"
+height="80"
+style="object-fit:cover;border-radius:10px;">
+
+
+{% else %}
+
+لا توجد صورة
+
+
+{% endif %}
+
+
+</td>
+
+
+
+
+<td>
+
+{{ product.product_code }}
+
+</td>
+
+
+
+
+<td>
+
+{{ product.name }}
+
+</td>
+
+
+
+<td>
+
+{% if product.description %}
+
+{{ product.description }}
+
+{% else %}
+
+لا يوجد وصف
+
+{% endif %}
+
+</td>
+
+
+
+<td>
+
+{% if product.category %}
+
+{{ product.category.name }}
+
+{% else %}
+
+بدون تصنيف
+
+{% endif %}
+
+
+</td>
+
+
+
+
+
+<td>
+
+
+{% if product.has_discount and product.sale_price %}
+
+
+<span style="color:#999;text-decoration:line-through;">
+
+{{ product.regular_price }}
+
+</span>
+
+<br>
+
+
+<span>
+
+{{ product.sale_price }}
+
+</span>
+
+
+{% else %}
+
+
+{{ product.regular_price }}
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+<td>
+
+{% if product.sale_unit %}
+
+{{ product.sale_unit }}
+
+{% else %}
+
+غير محدد
+
+{% endif %}
+
+</td>
+
+
+
+
+<td>
+
+
+
+{% if product.is_visible %}
+
+ظاهر
+
+{% else %}
+
+مخفي
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+<td class="actions">
+
+
+<a href="/admin/products/{{ product.id }}/edit"
+class="edit-btn">
+
+تعديل
+
+</a>
+
+
+
+
+<a href="/admin/products/{{ product.id }}/delete"
+class="delete-btn"
+onclick="return confirm('هل أنت متأكد من حذف هذا المنتج؟');">
+
+حذف
+
+</a>
+
+
+
+
+{% if product.is_visible %}
+
+
+<a href="/admin/products/{{ product.id }}/hide"
+class="add-btn">
+
+إخفاء
+
+</a>
+
+
+{% else %}
+
+
+
+<a href="/admin/products/{{ product.id }}/show"
+class="add-btn">
+
+إظهار
+
+</a>
+
+
+
+{% endif %}
+
+
+
+
+<a href="/admin/products/{{ product.id }}/colors"
+class="add-btn">
+
+الألوان
+
+</a>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+
+{% else %}
+
+
+
+<tr>
+
+<td colspan="9">
+
+لا توجد منتجات
+
+</td>
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+{% endblock %}

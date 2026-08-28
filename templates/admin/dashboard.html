@@ -1,0 +1,89 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="dashboard">
+
+
+    <h1>
+        لوحة التحكم
+    </h1>
+
+
+    <p class="welcome">
+        مرحباً بك في إدارة متجر الأقمشة
+    </p>
+
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <h3>
+                المنتجات
+            </h3>
+
+            <p>
+                {{ products_count }}
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <h3>
+                التصنيفات
+            </h3>
+
+            <p>
+                {{ categories_count }}
+            </p>
+
+        </div>
+
+
+
+
+        <div class="card">
+
+            <h3>
+                الطلبات
+            </h3>
+
+            <p>
+                {{ orders_count }}
+            </p>
+
+        </div>
+
+
+
+
+        <div class="card">
+
+            <h3>
+                البنرات
+            </h3>
+
+            <p>
+                {{ banners_count }}
+            </p>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

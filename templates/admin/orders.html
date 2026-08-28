@@ -1,0 +1,231 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        إدارة الطلبات
+    </h1>
+
+</div>
+
+
+
+<div class="table-container">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+رقم الطلب
+</th>
+
+
+<th>
+العميل
+</th>
+
+
+<th>
+الهاتف
+</th>
+
+
+<th>
+المدينة
+</th>
+
+
+<th>
+الدفع
+</th>
+
+
+<th>
+حالة الدفع
+</th>
+
+
+<th>
+حالة الطلب
+</th>
+
+
+<th>
+التاريخ
+</th>
+
+
+<th>
+الإجراءات
+</th>
+
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+{% for order in orders %}
+
+
+<tr>
+
+
+<td>
+{{ order.order_number }}
+</td>
+
+
+<td>
+{{ order.customer_name }}
+</td>
+
+
+<td>
+{{ order.phone }}
+</td>
+
+
+<td>
+{{ order.city }}
+</td>
+
+
+<td>
+{{ order.payment_method }}
+</td>
+
+
+
+<td>
+
+{% if order.payment_status == "pending" %}
+
+بانتظار الدفع
+
+{% elif order.payment_status == "paid" %}
+
+مدفوع
+
+{% elif order.payment_status == "rejected" %}
+
+مرفوض
+
+{% else %}
+
+{{ order.payment_status }}
+
+{% endif %}
+
+</td>
+
+
+
+<td>
+
+{% if order.order_status == "new" %}
+
+جديد
+
+{% elif order.order_status == "processing" %}
+
+قيد التجهيز
+
+{% elif order.order_status == "shipped" %}
+
+تم الشحن
+
+{% elif order.order_status == "completed" %}
+
+مكتمل
+
+{% elif order.order_status == "cancelled" %}
+
+ملغي
+
+{% else %}
+
+{{ order.order_status }}
+
+{% endif %}
+
+</td>
+
+
+
+<td>
+
+{{ order.created_at.strftime("%Y-%m-%d %H:%M") }}
+
+</td>
+
+
+
+<td>
+
+<a href="/admin/orders/{{ order.id }}" class="edit-btn">
+
+تفاصيل
+
+</a>
+
+
+<a 
+href="/admin/orders/delete/{{ order.id }}"
+class="delete-btn"
+onclick="return confirm('هل أنت متأكد من حذف هذا الطلب؟');"
+>
+
+حذف
+
+</a>
+
+
+</td>
+
+
+</tr>
+
+
+{% else %}
+
+
+<tr>
+
+<td colspan="9">
+
+لا توجد طلبات
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+{% endblock %}

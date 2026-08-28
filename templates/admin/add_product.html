@@ -1,0 +1,279 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        إضافة منتج جديد
+    </h1>
+
+</div>
+
+
+
+<div class="form-container">
+
+
+{% if request.query_params.get("error") == "code" %}
+
+<div class="alert-error">
+
+    ⚠️ كود المنتج مستخدم مسبقًا، اختر كودًا آخر.
+
+</div>
+
+{% endif %}
+
+
+
+{% if request.query_params.get("error") == "price" %}
+
+<div class="alert-error">
+
+    ⚠️ الرجاء إدخال السعر الأساسي للمنتج.
+
+</div>
+
+{% endif %}
+
+
+
+
+
+<form 
+    method="post" 
+    action="/admin/products/add"
+    enctype="multipart/form-data"
+>
+
+
+
+    <label>
+        كود المنتج
+    </label>
+
+    <input 
+        type="text"
+        name="product_code"
+        placeholder="مثال: FAB001"
+        required
+    >
+
+
+
+    <label>
+        اسم المنتج
+    </label>
+
+    <input 
+        type="text"
+        name="name"
+        placeholder="اسم المنتج"
+        required
+    >
+
+
+
+    <label>
+        وصف المنتج
+    </label>
+
+    <textarea 
+        name="description"
+        placeholder="وصف المنتج">
+    </textarea>
+
+
+
+    <label>
+        الصورة الرئيسية للمنتج
+    </label>
+
+    <input
+        type="file"
+        name="image"
+        accept="image/*"
+        required
+    >
+
+
+
+    <label>
+        السعر الأساسي
+    </label>
+
+    <input 
+        type="number"
+        step="0.01"
+        name="regular_price"
+    >
+
+
+
+    <label>
+        سعر التخفيض
+    </label>
+
+    <input 
+        type="number"
+        step="0.01"
+        name="sale_price"
+    >
+
+
+
+    <label>
+        وحدة البيع
+    </label>
+
+    <input 
+        type="text"
+        name="sale_unit"
+        placeholder="وار / قطعة"
+    >
+
+
+
+    <label>
+        التصنيف
+    </label>
+
+
+    <select name="category_id" required>
+
+
+        <option value="">
+            اختر التصنيف
+        </option>
+
+
+        {% for category in categories %}
+
+
+        <option value="{{ category.id }}">
+
+            {{ category.name }}
+
+        </option>
+
+
+        {% endfor %}
+
+
+    </select>
+
+
+
+
+    <label>
+        هل يوجد خصم؟
+    </label>
+
+
+    <select name="has_discount">
+
+        <option value="true">
+            نعم
+        </option>
+
+
+        <option value="false">
+            لا
+        </option>
+
+    </select>
+
+
+
+
+    <label>
+        حالة المنتج
+    </label>
+
+
+    <select name="is_visible">
+
+
+        <option value="true">
+            ظاهر
+        </option>
+
+
+        <option value="false">
+            مخفي
+        </option>
+
+
+    </select>
+
+
+
+
+    <label>
+        منتج مميز؟
+    </label>
+
+
+    <select name="is_featured">
+
+
+        <option value="true">
+            نعم
+        </option>
+
+
+        <option value="false">
+            لا
+        </option>
+
+
+    </select>
+
+
+
+
+    <label>
+        منتج جديد؟
+    </label>
+
+
+    <select name="is_new">
+
+
+        <option value="true">
+            نعم
+        </option>
+
+
+        <option value="false">
+            لا
+        </option>
+
+
+    </select>
+
+
+
+
+    <br>
+
+
+    <button class="add-btn" type="submit">
+
+        حفظ المنتج
+
+    </button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+{% endblock %}

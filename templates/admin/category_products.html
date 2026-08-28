@@ -1,0 +1,227 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        منتجات التصنيف: {{ category.name }}
+    </h1>
+
+
+    <a href="/admin/categories" class="add-btn">
+        العودة للتصنيفات
+    </a>
+
+</div>
+
+
+
+
+<div class="table-container">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+الصورة
+</th>
+
+
+<th>
+كود المنتج
+</th>
+
+
+<th>
+اسم المنتج
+</th>
+
+
+<th>
+السعر
+</th>
+
+
+<th>
+الحالة
+</th>
+
+
+<th>
+الإجراءات
+</th>
+
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+
+{% for product in products %}
+
+
+
+<tr>
+
+
+
+<td>
+
+
+{% if product.main_image_path %}
+
+
+<img src="/{{ product.main_image_path }}"
+width="80"
+height="80"
+style="object-fit:cover;border-radius:10px;">
+
+
+{% else %}
+
+لا توجد صورة
+
+{% endif %}
+
+
+</td>
+
+
+
+
+<td>
+
+{{ product.product_code }}
+
+</td>
+
+
+
+
+<td>
+
+{{ product.name }}
+
+</td>
+
+
+
+
+<td>
+
+
+{% if product.has_discount and product.sale_price %}
+
+
+{{ product.sale_price }}
+
+
+{% else %}
+
+
+{{ product.regular_price }}
+
+
+{% endif %}
+
+
+</td>
+
+
+
+
+<td>
+
+
+{% if product.is_visible %}
+
+ظاهر
+
+{% else %}
+
+مخفي
+
+{% endif %}
+
+
+</td>
+
+
+
+
+<td>
+
+
+
+<a href="/admin/products/{{ product.id }}/edit"
+class="edit-btn">
+
+تعديل
+
+</a>
+
+
+
+
+<a href="/admin/products/{{ product.id }}/colors"
+class="add-btn">
+
+الألوان
+
+</a>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+
+{% else %}
+
+
+
+<tr>
+
+<td colspan="6">
+
+لا توجد منتجات في هذا التصنيف
+
+</td>
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+{% endblock %}

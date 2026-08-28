@@ -1,0 +1,336 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+<section class="order-section">
+
+
+<div class="order-card">
+
+
+<h1>
+طلب عبر الواتساب
+</h1>
+
+
+
+<h3>
+المنتجات المطلوبة
+</h3>
+
+
+
+{% for item in cart_items %}
+
+
+<div class="order-product">
+
+
+<img
+src="/{{ item.color.image_path }}"
+alt="{{ item.product.name }}"
+>
+
+
+
+
+<div>
+
+
+<h2>
+{{ item.product.name }}
+</h2>
+
+
+<p>
+اللون:
+{{ item.color.color_name }}
+</p>
+
+
+<p>
+الوحدة:
+{{ item.sale_unit }}
+</p>
+
+
+<p>
+الكمية:
+{{ item.quantity }}
+</p>
+
+
+<strong>
+المجموع:
+{{ item.subtotal }} ريال يمني
+<br>
+
+يعادل :
+{{ item.subtotal|sar }} ريال سعودي
+
+</strong>
+
+
+</div>
+
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+
+
+<h2>
+الإجمالي:
+{{ total }} ريال يمني
+
+<br>
+يعادل :
+{{ total|sar }} ريال سعودي
+
+</h2>
+
+
+
+
+
+<form onsubmit="sendWhatsapp(event)">
+
+
+
+<label>
+الاسم
+</label>
+
+
+<input 
+id="customerName"
+type="text"
+placeholder="اكتب اسمك"
+required
+>
+
+
+
+
+<label>
+رقم الجوال
+</label>
+
+
+<input 
+id="customerPhone"
+type="text"
+placeholder="رقم الجوال"
+required
+>
+
+
+
+
+<label>
+المدينة
+</label>
+
+
+<input 
+id="customerCity"
+type="text"
+placeholder="المدينة"
+required
+>
+
+
+
+
+<label>
+العنوان
+</label>
+
+
+<textarea
+id="customerAddress"
+placeholder="العنوان الكامل"
+required>
+</textarea>
+
+
+
+
+<label>
+ملاحظات
+</label>
+
+
+<textarea
+id="customerNotes"
+placeholder="ملاحظات إضافية">
+</textarea>
+
+
+
+
+<button>
+
+إرسال الطلب عبر الواتساب
+
+</button>
+
+
+</form>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<script>
+
+
+function sendWhatsapp(event){
+
+
+event.preventDefault();
+
+
+
+let name =
+document.getElementById("customerName").value;
+
+
+let phone =
+document.getElementById("customerPhone").value;
+
+
+let city =
+document.getElementById("customerCity").value;
+
+
+let address =
+document.getElementById("customerAddress").value;
+
+
+let notes =
+document.getElementById("customerNotes").value;
+
+
+
+
+
+let message =
+
+`
+السلام عليكم ورحمة الله وبركاته
+
+أرغب بطلب المنتجات التالية:
+
+{% for item in cart_items %}
+
+━━━━━━━━━━━━━━
+
+المنتج:
+{{ item.product.name }}
+
+اللون:
+{{ item.color.color_name }}
+
+الوحدة:
+{{ item.sale_unit }}
+
+الكمية:
+{{ item.quantity }}
+
+سعر الوحدة:
+{{ item.unit_price }} ريال يمني
+
+يعادل:
+{{ item.unit_price|sar }} ريال سعودي
+
+
+المجموع:
+{{ item.subtotal }} ريال يمني
+
+يعادل:
+{{ item.subtotal|sar }} ريال سعودي
+
+
+صورة المنتج:
+{{ request.base_url }}{{ item.color.image_path }}
+
+{% endfor %}
+
+
+━━━━━━━━━━━━━━
+
+الإجمالي النهائي:
+
+{{ total }} ريال يمني
+
+يعادل:
+
+{{ total|sar }} ريال سعودي
+
+
+
+بيانات العميل:
+
+الاسم:
+${name}
+
+رقم الجوال:
+${phone}
+
+المدينة:
+${city}
+
+العنوان:
+${address}
+
+
+ملاحظات:
+${notes}
+
+
+شكراً لكم
+`;
+
+
+
+
+
+let whatsappNumber =
+"967783282649";
+
+
+
+let url =
+"https://wa.me/"
++ whatsappNumber
++ "?text="
++ encodeURIComponent(message);
+
+
+
+window.open(url,"_blank");
+
+
+}
+
+
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,705 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+<section class="product-details-section">
+
+
+<div class="product-details-card">
+
+
+
+<!-- صورة المنتج -->
+
+<div class="product-main-image">
+
+
+<img 
+id="mainProductImage"
+src="/{{ product.main_image_path }}"
+alt="{{ product.name }}"
+>
+
+
+</div>
+
+
+
+
+
+<!-- معلومات المنتج -->
+
+<div class="product-info">
+
+
+
+<h1>
+{{ product.name }}
+</h1>
+
+
+
+<p>
+{{ product.description }}
+</p>
+
+
+
+
+{% if product.sale_price %}
+
+
+<div class="details-price">
+
+
+<span class="old-price">
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+ {{ product.regular_price|sar }} ر.س
+
+</span>
+
+
+
+<br>
+
+
+<span class="new-price">
+
+{{ product.sale_price }} ر.ي
+
+<br>
+
+ {{ product.sale_price|sar }} ر.س
+
+</span>
+
+
+</div>
+
+
+{% else %}
+
+
+<div class="details-price">
+
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+ {{ product.regular_price|sar }} ر.س
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+{% if product.sale_unit %}
+
+<div class="sale-unit">
+
+يباع ب:
+{{ product.sale_unit }}
+
+</div>
+
+{% endif %}
+
+
+
+
+
+
+
+
+{% if product.colors %}
+
+
+
+<h3>
+الألوان المتوفرة
+</h3>
+
+
+
+<div id="selectedColor">
+
+</div>
+
+
+
+
+
+<div id="productImagesData">
+
+
+{% for color in product.colors %}
+
+
+<div 
+class="image-data"
+data-image="/{{ color.image_path }}"
+></div>
+
+
+{% endfor %}
+
+
+</div>
+
+
+
+
+
+
+<div class="colors-slider">
+
+
+
+{% for color in product.colors %}
+
+
+
+<div 
+class="color-item"
+onclick="changeProductImage('/{{ color.image_path }}','{{ color.color_name }}','{{ color.id }}')"
+>
+
+
+
+<img 
+src="/{{ color.image_path }}"
+alt="{{ color.color_name }}"
+loading="lazy"
+>
+
+
+
+<span>
+
+{{ color.color_name }}
+
+</span>
+
+
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
+
+<button 
+class="show-colors-btn"
+onclick="openColors()"
+>
+
+عرض جميع الألوان
+({{ product.colors|length }})
+
+</button>
+
+
+
+{% endif %}
+
+
+
+
+
+
+<!-- الكمية -->
+
+
+<div class="quantity-box">
+
+
+<h3>
+الكمية
+</h3>
+
+
+
+<button onclick="decreaseQuantity()">
+
+-
+
+</button>
+
+
+
+<input 
+id="quantity"
+type="number"
+value="1"
+min="1"
+readonly
+>
+
+
+
+<button onclick="increaseQuantity()">
+
++
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div id="cartMessage">
+
+</div>
+
+
+
+
+
+
+<div class="product-actions">
+
+
+<button 
+class="order-btn"
+onclick="addToCart()"
+>
+
+إضافة إلى السلة <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+<!-- نافذة جميع الألوان -->
+
+
+<div 
+id="colorsModal"
+class="colors-modal"
+>
+
+
+<button 
+class="close-arrow"
+onclick="closeColors()"
+>
+←
+</button>
+
+
+
+<div class="colors-modal-box">
+
+
+<h3>
+جميع الألوان
+</h3>
+
+
+
+
+<div class="all-colors-grid">
+
+
+
+{% for color in product.colors %}
+
+
+
+<div 
+class="color-item"
+
+onclick="changeProductImage('/{{ color.image_path }}','{{ color.color_name }}','{{ color.id }}'); closeColors();"
+
+>
+
+
+
+<img 
+src="/{{ color.image_path }}"
+alt="{{ color.color_name }}"
+loading="lazy"
+>
+
+
+<span>
+{{ color.color_name }}
+</span>
+
+
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
+<button onclick="closeColors()">
+
+إغلاق
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+// صور الألوان للحركة
+
+let productImages = [];
+
+
+
+document.querySelectorAll(".image-data").forEach(function(item){
+
+
+productImages.push(
+item.dataset.image
+);
+
+
+});
+
+
+
+let imageIndex = 0;
+
+
+let autoChange = true;
+
+
+
+let selectedColorId = null;
+
+
+let selectedColorImage = null;
+
+
+
+
+
+
+// اختيار اللون
+
+function changeProductImage(image,colorName,colorId){
+
+
+
+autoChange = false;
+
+
+
+selectedColorId = colorId;
+
+
+selectedColorImage = image;
+
+
+
+document.getElementById(
+"mainProductImage"
+).src = image;
+
+
+
+document.getElementById(
+"selectedColor"
+).innerHTML =
+"اللون المختار: " + colorName;
+
+
+
+}
+
+
+
+
+
+
+
+
+// زيادة الكمية
+
+function increaseQuantity(){
+
+
+let quantity =
+document.getElementById("quantity");
+
+
+
+quantity.value =
+parseInt(quantity.value) + 1;
+
+
+}
+
+
+
+
+
+
+
+// إنقاص الكمية
+
+function decreaseQuantity(){
+
+
+let quantity =
+document.getElementById("quantity");
+
+
+
+if(parseInt(quantity.value) > 1){
+
+
+quantity.value =
+parseInt(quantity.value) - 1;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+// إضافة للسلة
+
+function addToCart(){
+
+
+
+if(selectedColorId == null){
+
+
+alert("يرجى اختيار اللون أولاً");
+
+
+return;
+
+
+}
+
+
+
+
+let quantity =
+document.getElementById("quantity").value;
+
+
+
+
+
+fetch("/cart/add",{
+
+
+method:"POST",
+
+credentials:"include",
+
+headers:{
+
+
+"Content-Type":"application/x-www-form-urlencoded"
+
+
+},
+
+
+body:
+
+"product_id={{ product.id }}&color_id="
++ selectedColorId
++ "&quantity="
++ quantity
+
+
+
+})
+
+
+
+.then(response => response.json())
+
+
+
+.then(data => {
+
+
+
+document.getElementById(
+"cartMessage"
+).innerHTML =
+
+`
+<span>
+تمت إضافة المنتج إلى السلة
+</span>
+
+<a href="/cart" class="go-cart-btn">
+الانتقال إلى السلة
+</a>
+`;
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+// الحركة التلقائية للصور
+
+setInterval(function(){
+
+
+
+if(autoChange && productImages.length > 0){
+
+
+
+imageIndex++;
+
+
+
+if(imageIndex >= productImages.length){
+
+
+imageIndex = 0;
+
+
+}
+
+
+
+document.getElementById(
+"mainProductImage"
+).src =
+productImages[imageIndex];
+
+
+
+}
+
+
+
+},4000);
+
+
+
+
+
+
+
+
+// فتح نافذة الألوان
+
+function openColors(){
+
+
+document.getElementById(
+"colorsModal"
+).style.display="flex";
+
+
+}
+
+
+
+
+
+
+// إغلاق نافذة الألوان
+
+function closeColors(){
+
+
+document.getElementById(
+"colorsModal"
+).style.display="none";
+
+
+}
+
+
+
+</script>
+
+
+
+
+
+{% endblock %}

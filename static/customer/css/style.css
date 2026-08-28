@@ -1,0 +1,5788 @@
+/* ======================================
+   بن سلمان للأقمشة والمطرزات
+   Luxury Fabric Store
+====================================== */
+
+
+*{
+
+    box-sizing:border-box;
+
+}
+
+
+
+html,
+body{
+
+    overflow-x:hidden;
+
+}
+
+
+
+body{
+
+    margin:0;
+
+    font-family:Tahoma, Arial, sans-serif;
+
+    background:#f8f0e6;
+
+    color:#48010f;
+
+}
+
+
+
+/* ======================================
+   الهيدر
+====================================== */
+
+
+.customer-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 35px;
+
+    background:#48010f;
+
+    border-radius:0 0 40px 40px;
+
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.3);
+
+}
+
+
+
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+
+
+.brand img{
+
+    width:70px;
+
+    height:70px;
+
+    object-fit:contain;
+
+    border-radius:18px;
+
+    transition:.4s;
+
+}
+
+
+
+.brand img:hover{
+
+    transform:scale(1.08);
+
+}
+
+
+
+.brand-name{
+
+    color:#D4AF37;
+
+    font-size:23px;
+
+    font-weight:900;
+
+}
+
+
+
+.brand-name span{
+
+    display:block;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+.customer-header nav{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+
+.customer-header nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:10px 12px;
+
+    border-radius:20px;
+
+    transition:.3s;
+
+}
+
+
+
+.customer-header nav a:hover{
+
+    background:#D4AF37;
+
+    color:#48010f;
+
+}
+
+
+
+/* ======================================
+   البنرات
+====================================== */
+
+
+.hero-slider{
+
+    padding:20px;
+
+}
+
+
+
+.horizontal-slider{
+
+    display:flex;
+
+    gap:20px;
+
+    overflow-x:auto;
+
+    scroll-snap-type:x mandatory;
+
+    scrollbar-width:none;
+
+}
+
+
+
+.horizontal-slider::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+
+
+
+.hero-card{
+
+    flex:0 0 90%;
+
+    height:360px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    scroll-snap-align:center;
+
+    box-shadow:
+
+    0 20px 50px rgba(72,1,15,.25);
+
+}
+
+
+
+.hero-card img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.8s;
+
+}
+
+
+
+.hero-card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+
+
+
+
+.hero-info{
+
+    position:absolute;
+
+    top:50%;
+
+    right:40px;
+
+    transform:translateY(-50%);
+
+
+    width:300px;
+
+    padding:35px 25px;
+
+
+    background:rgba(255,255,255,.18);
+
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border:2px solid rgba(212,175,55,.8);
+
+    border-radius:30px;
+
+
+    text-align:center;
+
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.35);
+
+}
+
+
+
+
+.royal-icon{
+
+    color:#D4AF37;
+
+    font-size:30px;
+
+    text-shadow:
+
+    0 5px 15px rgba(212,175,55,.6);
+
+}
+
+
+
+
+
+.hero-info h2{
+
+    color:#D4AF37;
+
+    font-size:35px;
+
+    margin:15px 0;
+
+}
+
+
+
+.hero-info p{
+
+    color:white;
+
+    line-height:1.8;
+
+}
+
+
+
+
+
+.hero-info a{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:12px 35px;
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    border:1px solid #D4AF37;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+/* ======================================
+   الفوتر
+====================================== */
+/* ======================================
+   الفوتر الفاخر
+====================================== */
+
+
+.footer{
+
+    margin-top:50px;
+
+    background:#48010f;
+
+    color:white;
+
+    padding:35px 20px 20px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    border-top:4px solid #D4AF37;
+
+    border-radius:35px 35px 0 0;
+
+    text-align:center;
+
+}
+
+
+
+
+
+.footer-box{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+
+
+
+.footer-box img{
+
+    width:65px;
+
+    height:65px;
+
+    object-fit:contain;
+    
+
+}
+
+
+
+
+
+.brand-footer h3{
+
+    color:#D4AF37;
+
+    margin:8px 0 0;
+
+    font-size:22px;
+
+}
+
+
+
+
+
+.footer-box p{
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    margin:5px 0;
+
+}
+
+
+
+
+
+.brand-footer span{
+
+    font-size:13px;
+
+    color:#f5d98b;
+
+}
+
+
+
+
+
+.footer-box h3{
+
+    color:#D4AF37;
+
+    margin-bottom:12px;
+
+}
+
+
+
+
+
+.about-footer p{
+
+    max-width:250px;
+
+}
+
+
+
+
+
+.social-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+}
+
+
+
+
+
+.social-links a{
+
+    width:38px;
+
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+
+
+
+.social-links img{
+
+    width:30px;
+
+    height:30px;
+
+    object-fit:contain;
+
+}
+
+
+
+
+
+.copyright{
+
+    grid-column:1 / -1;
+
+    border-top:1px solid #D4AF37;
+
+    padding-top:15px;
+
+    margin-top:15px;
+
+    font-size:13px;
+
+    color:#f5d98b;
+
+}
+
+
+
+
+
+/* الجوال */
+
+@media(max-width:768px){
+
+
+.footer{
+
+    grid-template-columns:1fr;
+
+    padding:25px 15px 15px;
+
+}
+
+
+
+.footer-box{
+
+    margin-bottom:10px;
+
+}
+
+
+.copyright{
+
+    grid-column:auto;
+
+}
+
+
+}
+
+/* ======================================
+   عناوين الأقسام
+====================================== */
+
+
+.section-title{
+
+    text-align:center;
+
+    margin:45px 0 25px;
+
+    color:#48010f;
+
+    font-size:30px;
+
+    font-weight:900;
+
+    text-shadow:
+
+    0 3px 10px rgba(212,175,55,.35);
+
+}
+
+
+
+.section-title::after{
+
+    content:"";
+
+    display:block;
+
+    width:80px;
+
+    height:3px;
+
+    background:#D4AF37;
+
+    margin:12px auto;
+
+    border-radius:20px;
+
+}
+
+
+
+
+
+/* ======================================
+   الأقسام الثابتة
+====================================== */
+
+
+.categories-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    padding:20px;
+
+}
+
+
+
+
+
+.category-card{
+
+
+    position:relative;
+
+    height:270px;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+
+    background:rgba(255,255,255,.18);
+
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border:2px solid rgba(212,175,55,.8);
+
+
+    box-shadow:
+
+    0 20px 50px rgba(72,1,15,.2);
+
+
+    transition:.5s;
+
+
+}
+
+
+
+.category-card:hover{
+
+
+    transform:translateY(-8px);
+
+}
+
+
+
+
+
+/* صورة البطاقة */
+
+
+.card-image{
+
+    width:100%;
+
+    height:100%;
+
+    position:relative;
+
+}
+
+
+
+.card-image img{
+
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+
+}
+
+
+
+
+
+/* التاج داخل الصورة */
+
+
+.card-image .royal-icon{
+
+
+    position:absolute;
+
+
+    top:12px;
+
+    right:12px;
+
+
+    width:42px;
+
+    height:42px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    background:#48010f;
+
+
+    color:#D4AF37;
+
+
+    border-radius:50%;
+
+
+    border:2px solid #D4AF37;
+
+
+    z-index:3;
+
+
+}
+
+
+
+
+
+
+/* الطبقة الزجاجية السفلية */
+
+
+.card-glass{
+
+
+    position:absolute;
+
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+
+    padding:15px 10px;
+
+
+    background:rgba(255,255,255,.25);
+
+
+    backdrop-filter:blur(18px);
+
+
+    -webkit-backdrop-filter:blur(18px);
+
+
+    border-top:1px solid rgba(212,175,55,.7);
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+.card-glass h3{
+
+
+    margin:0 0 5px;
+
+
+    color:#48010f;
+
+
+    font-size:18px;
+
+
+    font-weight:900;
+
+
+    text-shadow:
+
+    0 2px 8px rgba(212,175,55,.5);
+
+
+}
+
+
+
+
+
+.card-glass p{
+
+
+    margin:5px;
+
+    font-size:13px;
+
+    color:#48010f;
+
+
+}
+
+
+
+
+
+.card-glass a{
+
+
+    display:inline-block;
+
+
+    margin-top:8px;
+
+
+    padding:7px 22px;
+
+
+    background:#48010f;
+
+
+    color:#D4AF37;
+
+
+    border-radius:25px;
+
+
+    border:1px solid #D4AF37;
+
+
+    text-decoration:none;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+
+
+/* ======================================
+   سلايدر المنتجات
+====================================== */
+
+
+.products-slider{
+
+
+    display:flex;
+
+
+    gap:18px;
+
+
+    overflow-x:auto;
+
+
+    padding:20px;
+
+
+    scroll-snap-type:x mandatory;
+
+
+    scrollbar-width:none;
+
+
+}
+
+
+
+
+.products-slider::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+
+
+
+.product-card{
+
+
+    flex:0 0 240px;
+
+
+    height:320px;
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+    border-radius:25px;
+
+
+    scroll-snap-align:start;
+
+
+    background:rgba(255,255,255,.18);
+
+
+    backdrop-filter:blur(20px);
+
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border:2px solid rgba(212,175,55,.8);
+
+
+    box-shadow:
+
+    0 20px 50px rgba(72,1,15,.25);
+
+
+    transition:.5s;
+
+
+}
+
+
+
+
+.product-card:hover{
+
+
+    transform:translateY(-8px) scale(1.03);
+
+
+}
+
+
+
+
+
+
+/* صورة المنتج */
+
+
+.product-card .card-image{
+
+
+    height:100%;
+
+
+}
+
+
+
+
+
+.product-card .card-image img{
+
+
+    height:100%;
+
+
+}
+
+
+
+
+
+
+/* تاج المنتج */
+
+
+.product-card .royal-icon{
+
+
+    position:absolute;
+
+
+    top:12px;
+
+
+    right:12px;
+
+
+    width:42px;
+
+
+    height:42px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    background:#48010f;
+
+
+    color:#D4AF37;
+
+
+    border-radius:50%;
+
+
+    border:2px solid #D4AF37;
+
+
+    z-index:5;
+
+
+}
+
+
+
+
+
+
+/* سعر المنتج */
+
+
+.product-price{
+
+
+    display:inline-block;
+
+
+    background:#48010f;
+
+
+    color:#D4AF37 !important;
+
+
+    padding:6px 18px;
+
+
+    border-radius:25px;
+
+
+    font-size:18px !important;
+
+
+    font-weight:bold;
+
+
+    border:1px solid #D4AF37;
+
+
+}
+
+
+
+
+
+
+
+
+/* ======================================
+   تأثير اللمعة
+====================================== */
+
+
+.category-card::after,
+.product-card::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    top:0;
+
+
+    left:-120%;
+
+
+    width:80%;
+
+
+    height:100%;
+
+
+    background:
+
+    linear-gradient(
+
+    120deg,
+
+    transparent,
+
+    rgb(74, 1, 1),
+
+    transparent
+
+    );
+
+
+    transition:1s;
+
+
+}
+
+
+
+
+
+.category-card:hover::after,
+.product-card:hover::after{
+
+
+    left:130%;
+
+
+}
+
+
+
+
+
+
+
+/* ======================================
+   الجوال
+====================================== */
+
+
+@media(max-width:600px){
+
+
+
+.categories-grid{
+
+
+    grid-template-columns:repeat(2,1fr);
+
+
+    gap:12px;
+
+
+    padding:12px;
+
+
+}
+
+
+
+
+.category-card{
+
+
+    height:230px;
+
+
+}
+
+
+
+.card-glass h3{
+
+
+    font-size:15px;
+
+
+}
+
+
+
+.card-glass a{
+
+
+    padding:6px 15px;
+
+
+    font-size:12px;
+
+
+}
+
+
+
+
+
+.products-slider{
+
+
+    padding:12px;
+
+
+}
+
+
+
+
+.product-card{
+
+
+    flex:0 0 210px;
+
+
+    height:300px;
+
+
+}
+
+
+}
+
+
+/* =================================
+   تعديل بطاقة البنر للجوال
+   Luxury Banner Card
+================================= */
+
+
+.hero-info{
+
+    width:320px;
+
+    padding:30px 25px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:2px solid rgba(212,175,55,.8);
+
+    border-radius:30px;
+
+}
+
+
+
+
+.hero-info h2{
+
+    color:#48010f;
+
+    font-size:32px;
+
+    font-weight:900;
+
+    margin:10px 0;
+
+
+    text-shadow:
+
+    0 2px 8px rgba(212,175,55,.5);
+
+}
+
+
+
+
+.hero-info p{
+
+    color:#48010f;
+
+    font-size:15px;
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+.hero-info a{
+
+
+    padding:10px 25px;
+
+    margin-top:15px;
+
+
+    font-size:14px;
+
+}
+
+
+
+
+
+.hero-info .royal-icon{
+
+    width:45px;
+
+    height:45px;
+
+    margin:auto;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    background:#48010f;
+
+
+    border-radius:50%;
+
+
+    border:2px solid #D4AF37;
+
+
+    font-size:24px;
+
+}
+
+
+
+
+
+/* ==========================
+   الجوال
+========================== */
+
+
+@media(max-width:600px){
+
+
+.hero-card{
+
+    height:260px;
+
+}
+
+
+
+.hero-info{
+
+
+    width:210px;
+
+
+    padding:18px 12px;
+
+
+    right:10px;
+
+
+    border-radius:22px;
+
+
+}
+
+
+
+.hero-info h2{
+
+
+    font-size:20px;
+
+
+    margin:8px 0;
+
+
+}
+
+
+
+.hero-info p{
+
+
+    font-size:12px;
+
+
+    line-height:1.4;
+
+
+}
+
+
+
+.hero-info a{
+
+
+    padding:7px 18px;
+
+
+    font-size:12px;
+
+
+    margin-top:8px;
+
+
+}
+
+
+
+.hero-info .royal-icon{
+
+
+    width:35px;
+
+
+    height:35px;
+
+
+    font-size:18px;
+
+
+}
+
+
+}
+
+/* ======================================
+   تأثيرات الأزرار الفاخرة
+====================================== */
+
+
+/* جميع أزرار الموقع */
+
+.hero-info a,
+.card-glass a{
+
+
+    transition:.4s;
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+/* حركة المرور بالماوس */
+
+
+.hero-info a:hover,
+.card-glass a:hover{
+
+
+    transform:translateY(-5px) scale(1.08);
+
+
+    background:#D4AF37;
+
+
+    color:#48010f;
+
+
+    box-shadow:
+
+    0 10px 25px rgba(212,175,55,.6);
+
+
+}
+
+
+
+
+
+/* لمعان الزر */
+
+
+.hero-info a::before,
+.card-glass a::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    top:0;
+
+
+    left:-100%;
+
+
+    width:70%;
+
+
+    height:100%;
+
+
+    background:
+
+    linear-gradient(
+
+    120deg,
+
+    transparent,
+
+    rgba(255,255,255,.7),
+
+    transparent
+
+    );
+
+
+    transition:.6s;
+
+
+}
+
+
+
+
+
+.hero-info a:hover::before,
+.card-glass a:hover::before{
+
+
+    left:130%;
+
+
+}
+
+
+
+
+
+/* تأثير الضغط في الجوال */
+
+
+.hero-info a:active,
+.card-glass a:active{
+
+
+    transform:scale(.92);
+
+
+}
+
+
+/* ======================================
+   تحسين الحركات في الجوال Touch Effects
+====================================== */
+
+
+@media (max-width:600px){
+
+
+.category-card:active,
+.product-card:active,
+.hero-card:active{
+
+
+    transform:scale(.96);
+
+
+    transition:.2s;
+
+
+}
+
+
+
+
+.category-card,
+.product-card,
+.hero-card{
+
+
+    -webkit-tap-highlight-color:transparent;
+
+
+}
+
+
+
+}
+
+
+
+
+/* ======================================
+   إصلاح الهيدر للجوال
+====================================== */
+
+
+@media(max-width:600px){
+
+
+
+.customer-header{
+
+
+    padding:12px 10px;
+
+
+    gap:15px;
+
+
+    border-radius:0 0 25px 25px;
+
+
+}
+
+
+
+
+.brand{
+
+
+    width:100%;
+
+
+    justify-content:center;
+
+
+    flex-direction:column;
+
+
+    gap:5px;
+
+
+}
+
+
+
+
+.brand img{
+
+
+    width:55px;
+
+
+    height:55px;
+
+
+}
+
+
+
+
+.brand-name{
+
+
+    font-size:17px;
+
+
+    text-align:center;
+
+
+    line-height:1.4;
+
+
+}
+
+
+
+
+.brand-name span{
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+.customer-header nav{
+
+
+    width:100%;
+
+
+    display:flex;
+
+
+    justify-content:space-around;
+
+
+    gap:3px;
+
+
+}
+
+
+
+
+
+.customer-header nav a{
+
+
+    flex-direction:column;
+
+
+    padding:7px 5px;
+
+
+    font-size:11px;
+
+
+    gap:2px;
+
+
+}
+
+
+
+
+.customer-header nav a span{
+
+
+    display:block;
+
+
+}
+
+
+
+
+}
+/* ======================================
+   تأثيرات الجوال مثل اللابتوب
+====================================== */
+
+
+@media(max-width:600px){
+
+
+/* البطاقات */
+
+.category-card,
+.product-card,
+.hero-card{
+
+
+    transition:.4s;
+
+
+    -webkit-tap-highlight-color:transparent;
+
+
+}
+
+
+
+
+.category-card:active,
+.product-card:active,
+.hero-card:active{
+
+
+    transform:scale(1.04);
+
+
+    box-shadow:
+
+    0 25px 60px rgba(212,175,55,.45);
+
+
+}
+
+
+
+
+
+/* وميض البطاقات في الجوال */
+
+
+.category-card::before,
+.product-card::before,
+.hero-card::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    top:0;
+
+
+    left:-120%;
+
+
+    width:70%;
+
+
+    height:100%;
+
+
+    background:
+
+
+    linear-gradient(
+
+    120deg,
+
+    transparent,
+
+    rgba(255,255,255,.7),
+
+    transparent
+
+    );
+
+
+    transition:.8s;
+
+
+    z-index:10;
+
+
+}
+
+
+
+
+
+.category-card:active::before,
+.product-card:active::before,
+.hero-card:active::before{
+
+
+    left:130%;
+
+
+}
+
+
+
+
+
+/* الأزرار */
+
+.hero-info a,
+.card-glass a{
+
+
+    transition:.4s;
+
+
+    -webkit-tap-highlight-color:transparent;
+
+
+}
+
+
+
+
+
+.hero-info a:active,
+.card-glass a:active{
+
+
+    transform:scale(1.08);
+
+
+    background:#D4AF37;
+
+
+    color:#48010f;
+
+
+    box-shadow:
+
+
+    0 10px 30px rgba(212,175,55,.7);
+
+
+}
+
+
+
+
+
+.hero-info a:active::after,
+.card-glass a:active::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    left:0;
+
+
+}
+
+
+}
+
+/* ======================================
+   إصلاح تأثير الأزرار واللمس
+====================================== */
+
+
+/* إزالة بقاء لون الزر بعد الرجوع */
+
+.hero-info a,
+.card-glass a {
+
+    outline:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+
+/* تأثير اللابتوب */
+
+.hero-info a:hover,
+.card-glass a:hover {
+
+    background:#D4AF37;
+
+    color:#48010f;
+
+    transform:translateY(-5px) scale(1.08);
+
+    box-shadow:
+    0 10px 30px rgba(212,175,55,.7);
+
+}
+
+
+
+/* تأثير الجوال عند الضغط فقط */
+
+.hero-info a:active,
+.card-glass a:active {
+
+    background:#D4AF37;
+
+    color:#48010f;
+
+    transform:scale(.95);
+
+}
+
+
+
+
+/* إعادة الحالة بعد الخروج */
+
+.hero-info a:visited,
+.card-glass a:visited {
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+}
+
+
+
+
+/* حركة لمس البطاقات */
+
+@media(max-width:600px){
+
+
+.category-card:active,
+.product-card:active,
+.hero-card:active {
+
+
+    transform:scale(.97);
+
+
+}
+
+
+}
+
+
+/* ======================================
+   حركة البنر
+====================================== */
+
+
+.hero-card img{
+
+    animation:bannerMove 8s ease-in-out infinite;
+
+}
+
+
+
+@keyframes bannerMove{
+
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+
+    50%{
+
+        transform:scale(1.05);
+
+    }
+
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+
+
+
+
+
+/* ======================================
+   حركة صور البطاقات فقط
+====================================== */
+
+
+.category-card .card-image img,
+.product-card .card-image img{
+
+
+    animation:cardImageMove 3s ease-in-out infinite;
+
+
+}
+
+
+
+
+@keyframes cardImageMove{
+
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+
+
+    50%{
+
+        transform:translateY(-5px);
+
+    }
+
+
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+
+}
+
+
+/* شبكة صفحة جميع المنتجات */
+
+.products-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    padding:20px;
+
+}
+
+/* =================================
+   صفحة جميع المنتجات
+================================= */
+
+
+.products-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    padding:30px;
+
+    width:100%;
+
+}
+
+
+
+.products-grid .product-card{
+
+    width:100%;
+
+    height:350px;
+
+}
+
+
+
+.products-grid .card-image{
+
+    height:100%;
+
+}
+
+
+
+.products-grid .card-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+
+.products-grid .card-glass{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+.products-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+
+    padding:12px;
+
+}
+
+
+
+.products-grid .product-card{
+
+    height:300px;
+
+}
+
+
+}
+/* =================================
+   تعديل أزرار المنتجات في الكمبيوتر
+================================= */
+
+
+.card-glass{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+
+/* السعر */
+
+.product-price{
+
+    width:fit-content;
+
+    margin:10px auto;
+
+    padding:7px 25px;
+
+}
+
+
+
+/* زر عرض المنتج */
+
+.card-glass a{
+
+
+    width:fit-content;
+
+    margin:8px auto 15px;
+
+    padding:8px 30px;
+
+    display:block;
+
+
+}
+
+
+
+/* الكمبيوتر */
+
+@media(min-width:601px){
+
+
+.product-card{
+
+    height:350px;
+
+}
+
+
+.card-glass h3{
+
+    font-size:20px;
+
+}
+
+
+.card-glass p{
+
+    margin:5px;
+
+}
+
+
+.product-price{
+
+    font-size:17px !important;
+
+}
+
+
+.card-glass a{
+
+    font-size:15px;
+
+}
+
+
+}
+
+/* =================================
+   ضبط نهائي لحجم بطاقة المنتج
+   جعل الصورة أكبر والزجاج أصغر
+================================= */
+
+
+/* الصورة تأخذ أغلب البطاقة */
+
+.product-card .card-image{
+
+    height:86%;
+
+}
+
+
+
+/* الجزء الزجاجي السفلي */
+
+.product-card .card-glass{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+
+    padding:8px 10px;
+
+
+    background:rgba(255, 255, 255, 0);
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+
+    border-top:1px solid rgba(212,175,55,.5);
+
+
+    text-align:center;
+
+}
+
+
+
+/* اسم المنتج */
+
+.product-card .card-glass h3{
+
+    margin:0 0 2px;
+
+    font-size:15px;
+
+    line-height:1.3;
+
+}
+
+
+
+/* الوصف */
+
+.product-card .card-glass p{
+
+    margin:0;
+
+    font-size:11px;
+
+    line-height:1.2;
+
+}
+
+
+
+/* السعر ينزل قليلا بدون خلفية */
+
+.product-card .product-price{
+
+    margin:6px 0 3px;
+
+    color:#D4AF37 !important;
+
+    font-size:16px !important;
+
+    font-weight:900;
+
+}
+
+
+
+/* زر عرض المنتج قريب من نهاية البطاقة */
+
+.product-card .card-glass a{
+
+    padding:4px 16px;
+
+    font-size:11px;
+
+    margin-top:3px;
+
+}
+
+
+/* الجوال */
+
+@media(max-width:600px){
+
+.product-card .card-image{
+
+    height:84%;
+
+}
+
+
+.product-card .card-glass{
+
+    padding:7px;
+
+}
+
+
+.product-card .product-price{
+
+    font-size:13px !important;
+
+}
+
+}
+
+/* =================================
+   تعديل بطاقة المنتجات فقط
+================================= */
+
+
+.product-card .card-glass{
+
+    padding:6px 8px;
+
+    background:rgba(255,255,255,.12) !important;
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+}
+
+
+
+/* تصغير الصورة لا - تكبير مساحة الصورة */
+
+.product-card .card-image{
+
+    height:88%;
+
+}
+
+
+
+/* العنوان */
+
+.product-card .card-glass h3{
+
+    margin:0;
+
+    font-size:14px;
+
+}
+
+
+
+/* الوصف */
+
+.product-card .card-glass p{
+
+    margin:0;
+
+    font-size:11px;
+
+}
+
+
+
+/* السعر بدون خلفية */
+
+.product-card .product-price{
+
+    background:transparent !important;
+
+    border:none !important;
+
+    padding:0 !important;
+
+    margin:3px 0;
+
+    color:#48010f !important;
+
+    font-size:15px !important;
+
+}
+
+
+
+/* الزر */
+
+.product-card .card-glass a{
+
+    margin-top:2px;
+
+    padding:4px 15px;
+
+    font-size:11px;
+
+}
+
+
+
+/* إصلاح الفراغ الأبيض أسفل بطاقة المنتج */
+
+.product-card{
+    overflow:hidden !important;
+    background:transparent !important;
+}
+
+
+.product-card .card-image{
+    position:absolute !important;
+    top:0;
+    left:0;
+    width:100%;
+    height:100% !important;
+}
+
+
+.product-card .card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+.card-glass{
+    bottom:0 !important;
+}
+
+
+/* =====================================
+   صفحة تفاصيل المنتج - النسخة الاحترافية
+===================================== */
+
+
+/* القسم الرئيسي */
+
+.product-details-section{
+
+    padding:40px 8%;
+
+}
+
+
+
+
+/* البطاقة الرئيسية */
+
+.product-details-card{
+
+    display:flex;
+
+    gap:40px;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(212,175,55,.5);
+
+    border-radius:35px;
+
+    padding:30px;
+
+    box-shadow:
+    0 20px 50px rgba(72,1,15,.15);
+
+}
+
+
+
+
+/* ===============================
+   الصورة الرئيسية
+================================ */
+
+
+.product-main-image{
+
+    width:50%;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+}
+
+
+
+
+.product-main-image img{
+
+    width:100%;
+
+    height:500px;
+
+    object-fit:cover;
+
+    border-radius:30px;
+
+    border:2px solid #D4AF37;
+
+    transition:
+    opacity .8s ease,
+    transform 1s ease;
+
+    animation:
+    mainImageFloat 5s ease-in-out infinite;
+
+}
+
+
+
+
+
+.product-main-image img:hover{
+
+    transform:scale(1.03);
+
+}
+
+
+
+
+
+@keyframes mainImageFloat{
+
+
+0%{
+
+    transform:translateY(0);
+
+}
+
+
+50%{
+
+    transform:translateY(-8px);
+
+}
+
+
+100%{
+
+    transform:translateY(0);
+
+}
+
+
+}
+
+
+
+
+
+/* ===============================
+   معلومات المنتج
+================================ */
+
+
+.product-info{
+
+    width:50%;
+
+    text-align:center;
+
+}
+
+
+
+
+.product-info h1{
+
+    color:#48010f;
+
+    font-size:34px;
+
+    font-weight:900;
+
+    margin-bottom:15px;
+
+    text-shadow:
+    0 3px 10px rgba(212,175,55,.35);
+
+}
+
+
+
+
+.product-info p{
+
+    color:#48010f;
+
+    font-size:18px;
+
+    line-height:2;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+.details-price{
+
+    color:#D4AF37;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    margin:20px 0;
+
+}
+
+
+
+
+
+#selectedColor{
+
+    color:#48010f;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    margin:10px;
+
+}
+
+
+
+
+
+/* ================================
+   سلايدر الألوان
+================================ */
+
+
+.colors-slider{
+
+    display:flex;
+
+    gap:18px;
+
+    overflow-x:auto;
+
+    padding:15px 5px;
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+
+.colors-slider::-webkit-scrollbar{
+
+    height:6px;
+
+}
+
+
+
+
+.colors-slider::-webkit-scrollbar-thumb{
+
+    background:#D4AF37;
+
+    border-radius:20px;
+
+}
+
+
+
+
+
+/* بطاقة اللون */
+
+
+.color-item{
+
+    flex:0 0 auto;
+
+    width:145px;
+
+    height:170px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    border:1px solid #D4AF37;
+
+    background:rgba(255,255,255,.20);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+
+    0 10px 25px rgba(72,1,15,.15);
+
+}
+
+
+
+
+.color-item img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    animation:
+    colorImageFloat 4s ease-in-out infinite;
+
+}
+
+
+
+@keyframes colorImageFloat{
+
+
+0%{
+
+transform:translateY(0);
+
+}
+
+
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+
+
+100%{
+
+transform:translateY(0);
+
+}
+
+
+
+}
+/* =====================================
+   وميض بطاقات الألوان
+===================================== */
+
+
+.color-item{
+
+    isolation:isolate;
+
+}
+
+
+.color-item::before{
+
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(72,1,15,.45),
+    transparent
+    );
+
+
+    transform:skewX(-25deg);
+
+    transition:.7s;
+
+    z-index:2;
+
+
+}
+
+
+
+.color-item:hover::before{
+
+
+    left:140%;
+
+
+}
+
+
+
+
+.color-item span{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    padding:12px;
+
+
+    background:rgba(255,255,255,.30);
+
+    backdrop-filter:blur(12px);
+
+
+    color:#48010f;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+/* =====================================
+   الأزرار
+===================================== */
+
+
+/* زر عرض جميع الألوان */
+/* =====================================
+   أزرار صفحة المنتج
+===================================== */
+
+
+.show-colors-btn,
+.order-btn,
+.colors-modal-box button{
+
+
+    border-radius:30px;
+
+    border:1px solid #D4AF37;
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+
+.show-colors-btn{
+
+    margin-top:20px;
+
+    padding:12px 35px;
+
+    font-size:16px;
+
+}
+
+
+
+
+.order-btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:12px 40px;
+
+    font-size:17px;
+
+    text-decoration:none;
+
+}
+
+
+
+
+
+.colors-modal-box button{
+
+    margin-top:25px;
+
+    padding:10px 40px;
+
+}
+
+
+
+
+.show-colors-btn:hover,
+.order-btn:hover,
+.colors-modal-box button:hover{
+
+
+    background:#D4AF37;
+
+    color:#48010f;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+    0 10px 30px rgba(212,175,55,.5);
+
+
+}
+
+
+
+
+
+
+/* =====================================
+   نافذة جميع الألوان
+===================================== */
+
+
+.colors-modal{
+
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+
+    background:
+    rgba(0,0,0,.55);
+
+
+    backdrop-filter:blur(10px);
+
+    z-index:9999;
+
+
+    justify-content:center;
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+.colors-modal-box{
+
+
+    width:90%;
+
+    max-width:650px;
+
+    max-height:80vh;
+
+    overflow-y:auto;
+
+
+    background:
+    rgba(255,255,255,.85);
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:1px solid #D4AF37;
+
+    border-radius:35px;
+
+    padding:30px;
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+.colors-modal-box h3{
+
+
+    color:#48010f;
+
+    font-size:25px;
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+.all-colors-grid{
+
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+
+}
+
+
+
+
+
+.all-colors-grid .color-item{
+
+
+    width:100%;
+
+    height:150px;
+
+
+}
+
+
+
+
+
+.colors-modal-box button{
+
+
+    margin-top:25px;
+
+    padding:10px 40px;
+
+
+    border-radius:30px;
+
+
+    border:1px solid #D4AF37;
+
+
+    background:#48010f;
+
+
+    color:#D4AF37;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+
+
+/* =====================================
+   الجوال
+===================================== */
+
+
+@media(max-width:700px){
+
+
+
+.product-details-section{
+
+
+    padding:20px 5%;
+
+
+}
+
+
+
+
+.product-details-card{
+
+
+    flex-direction:column;
+
+    gap:25px;
+
+    padding:15px;
+
+
+}
+
+
+
+
+
+.product-main-image{
+
+
+    width:100%;
+
+
+}
+
+
+
+
+
+.product-main-image img{
+
+
+    height:330px;
+
+
+    border-radius:25px;
+
+
+}
+
+
+
+
+.product-info{
+
+
+    width:100%;
+
+
+}
+
+
+
+
+
+.product-info h1{
+
+
+    font-size:26px;
+
+    line-height:1.6;
+
+
+}
+
+
+
+
+.product-info p{
+
+
+    font-size:16px;
+
+    line-height:1.8;
+
+
+}
+
+
+
+
+
+.details-price{
+
+
+    font-size:23px;
+
+
+}
+
+
+
+
+.colors-slider{
+
+
+    gap:12px;
+
+
+}
+
+
+
+
+.color-item{
+
+
+    width:115px;
+
+    height:140px;
+
+
+}
+
+
+
+
+.color-item span{
+
+
+    font-size:13px;
+
+    padding:8px;
+
+
+}
+
+
+
+
+
+.show-colors-btn{
+
+
+    width:90%;
+
+
+}
+
+
+
+
+.order-btn{
+
+
+    width:80%;
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+.all-colors-grid{
+
+
+    grid-template-columns:repeat(2,1fr);
+
+
+}
+
+
+
+
+
+.colors-modal-box{
+
+
+    padding:20px;
+
+    border-radius:25px;
+
+
+}
+
+
+
+}
+
+.close-arrow{
+
+    position:absolute;
+
+    top:15px;
+
+    left:20px;
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    border:1px solid #D4AF37;
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+
+.colors-modal-box{
+
+    position:relative;
+
+}
+
+/* =====================================
+   صفحة طلب المنتج
+===================================== */
+
+
+.order-section{
+
+    padding:40px 8%;
+
+}
+
+
+
+
+
+.order-card{
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(212,175,55,.5);
+
+    border-radius:35px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 50px rgba(72,1,15,.15);
+
+}
+
+
+
+
+
+.order-card h1{
+
+    text-align:center;
+
+    color:#48010f;
+
+    font-size:32px;
+
+    font-weight:900;
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+
+/* المنتج */
+
+.order-product{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:20px;
+
+    background:rgba(255,255,255,.20);
+
+    border-radius:25px;
+
+    border:1px solid rgba(212,175,55,.5);
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+
+.order-product img{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:25px;
+
+    border:2px solid #D4AF37;
+
+}
+
+
+
+
+
+.order-product h2{
+
+    color:#48010f;
+
+    font-size:25px;
+
+}
+
+
+
+
+
+.order-product p{
+
+    color:#48010f;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+.order-product strong{
+
+    color:#D4AF37;
+
+    font-size:22px;
+
+}
+
+
+
+
+
+/* الحقول */
+
+.order-card label{
+
+    display:block;
+
+    color:#48010f;
+
+    font-weight:bold;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+
+
+.order-card input,
+.order-card textarea,
+.order-card select{
+
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:18px;
+
+    border:1px solid #D4AF37;
+
+    background:rgba(255,255,255,.25);
+
+    backdrop-filter:blur(10px);
+
+    outline:none;
+
+    font-size:16px;
+
+
+}
+
+
+
+
+
+.order-card textarea{
+
+    height:120px;
+
+}
+
+
+
+
+
+/* رسالة الدفع */
+
+.payment-note{
+
+    color:#48010f;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    background:rgba(212,175,55,.15);
+
+    padding:15px;
+
+    border-radius:20px;
+
+}
+
+
+
+
+
+/* طرق الدفع */
+
+
+.payment-methods{
+
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin-top:20px;
+
+}
+
+
+
+
+
+.payment-card{
+
+
+    position:relative;
+
+    text-align:center;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.20);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(212,175,55,.5);
+
+    transition:.4s;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.payment-card:hover{
+
+
+    transform:translateY(-5px);
+
+    border-color:#D4AF37;
+
+}
+
+
+
+
+
+.payment-card img{
+
+
+    width:100px;
+
+    height:80px;
+
+    object-fit:contain;
+
+}
+
+
+
+
+
+.payment-card h3{
+
+
+    color:#48010f;
+
+    font-size:17px;
+
+}
+
+
+
+
+
+.payment-card p{
+
+
+    color:#48010f;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.payment-card input{
+
+
+    width:auto;
+
+    margin-top:10px;
+
+}
+
+
+
+
+
+/* زر الإرسال */
+
+
+.order-card button{
+
+
+    display:block;
+
+    margin:30px auto 0;
+
+    padding:13px 45px;
+
+    border-radius:30px;
+
+    border:1px solid #D4AF37;
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+}
+
+
+
+
+
+.order-card button:hover{
+
+
+    background:#D4AF37;
+
+    color:#48010f;
+
+    transform:translateY(-4px);
+
+}
+
+
+
+
+
+/* الجوال */
+
+
+@media(max-width:700px){
+
+
+.order-section{
+
+    padding:20px 5%;
+
+}
+
+
+
+
+.order-card{
+
+    padding:20px;
+
+}
+
+
+
+
+
+.order-product{
+
+
+    flex-direction:column;
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+.order-product img{
+
+    width:100%;
+
+    height:300px;
+
+}
+
+
+
+
+
+.payment-methods{
+
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+
+
+.order-card h1{
+
+    font-size:26px;
+
+}
+
+
+}
+
+/* =====================================
+   أزرار الطلب
+===================================== */
+
+
+.product-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+
+
+.whatsapp-btn{
+
+    display:inline-block;
+
+    padding:12px 35px;
+
+    border-radius:30px;
+
+    border:1px solid #D4AF37;
+
+    background:#25D366;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+
+
+
+.whatsapp-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(37,211,102,.4);
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+.product-actions{
+
+    flex-direction:column;
+
+}
+
+
+
+.product-actions a{
+
+    width:90%;
+
+    text-align:center;
+
+}
+
+
+}
+
+.delete-cart-btn{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+    border:1px solid #D4AF37;
+
+    transition:.3s;
+
+}
+
+
+
+.delete-cart-btn:hover{
+
+    background:#D4AF37;
+
+    color:#48010f;
+
+    transform:scale(1.1);
+
+}
+
+.cart-item{
+    position:relative;
+}
+
+
+.cart-item{
+    position:relative;
+}
+
+
+.delete-box{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+}
+
+
+.delete-cart-btn{
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#5a0015;
+
+    color:#d4af37;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+}
+
+
+/* ==========================
+   تنسيق صفحة إتمام الطلب للجوال
+========================== */
+
+
+.order-section{
+
+    padding:20px;
+
+}
+
+
+.order-card{
+
+    width:100%;
+    max-width:600px;
+    margin:auto;
+
+}
+
+
+
+
+.order-product{
+
+    display:flex;
+    gap:15px;
+    align-items:center;
+
+    background:#fff;
+    padding:15px;
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.order-product img{
+
+    width:90px;
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+}
+
+
+
+
+.order-product h2{
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+
+
+.cart-total{
+
+    background:#800020;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-size:20px;
+
+    margin:20px 0;
+
+}
+
+
+
+
+.payment-methods{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:15px;
+
+}
+
+
+
+
+.payment-card{
+
+    background:white;
+
+    border:1px solid #ddd;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+
+
+
+.payment-card img{
+
+    max-width:120px;
+
+    height:60px;
+
+    object-fit:contain;
+
+}
+
+
+
+
+input,
+textarea{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+.order-card button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#800020;
+
+    color:white;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+.order-product{
+
+    flex-direction:row;
+
+}
+
+
+.order-product img{
+
+    width:75px;
+
+    height:75px;
+
+}
+
+
+}
+
+
+/* =====================================
+   صفحة سلة المشتريات - Luxury Cart
+===================================== */
+
+
+.cart-section{
+
+    padding:40px 8%;
+
+}
+
+
+
+.cart-card{
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(212,175,55,.6);
+
+    border-radius:35px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 50px rgba(72,1,15,.18);
+
+}
+
+
+
+.cart-card h1{
+
+    text-align:center;
+
+    color:#48010f;
+
+    font-size:35px;
+
+    font-weight:900;
+
+    margin-bottom:35px;
+
+}
+
+
+
+/* بطاقة المنتج داخل السلة */
+
+.cart-item{
+
+    display:flex;
+
+    gap:25px;
+
+    align-items:center;
+
+    position:relative;
+
+    background:rgba(255,255,255,.25);
+
+    border:1px solid rgba(212,175,55,.5);
+
+    border-radius:25px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+.cart-image img{
+
+    width:150px;
+
+    height:150px;
+
+    object-fit:cover;
+
+    border-radius:25px;
+
+    border:2px solid #D4AF37;
+
+}
+
+
+
+
+
+.cart-info{
+
+    flex:1;
+
+    text-align:right;
+
+}
+
+
+
+.cart-info h2{
+
+    color:#48010f;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+.cart-info p{
+
+    color:#48010f;
+
+    font-size:17px;
+
+    margin:8px 0;
+
+}
+
+
+
+
+.cart-info strong{
+
+    color:#D4AF37;
+
+    font-size:20px;
+
+}
+
+
+
+
+
+/* التحكم بالكمية */
+
+
+.quantity-control{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin:15px 0;
+
+}
+
+
+
+.quantity-btn{
+
+    width:40px;
+
+    height:40px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    border:1px solid #D4AF37;
+
+    text-decoration:none;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+.quantity-number{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#48010f;
+
+}
+
+
+
+
+
+/* زر الحذف */
+
+
+.delete-cart-btn{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+}
+
+
+
+
+
+/* الإجمالي */
+
+
+.cart-total{
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    border:1px solid #D4AF37;
+
+    margin-top:30px;
+
+}
+
+
+
+
+
+.cart-total strong{
+
+    color:white;
+
+}
+
+
+
+
+
+/* أزرار الطلب */
+
+
+.cart-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-top:30px;
+
+}
+
+
+
+
+
+.cart-actions a{
+
+    padding:14px 35px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    font-size:17px;
+
+    border:1px solid #D4AF37;
+
+    transition:.4s;
+
+}
+
+
+
+.cart-actions .order-btn{
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+}
+
+
+
+.cart-actions .whatsapp-btn{
+
+    background:#25D366;
+
+    color:white;
+
+}
+
+
+
+
+
+.cart-actions a:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+/* السلة الفارغة */
+
+
+.empty-cart{
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+
+
+.empty-cart h3{
+
+    color:#48010f;
+
+    font-size:28px;
+
+}
+
+
+
+.empty-cart p{
+
+    color:#48010f;
+
+    font-size:18px;
+
+}
+
+
+
+/* الجوال */
+
+
+@media(max-width:600px){
+
+
+.cart-section{
+
+    padding:20px 5%;
+
+}
+
+
+
+.cart-card{
+
+    padding:20px;
+
+}
+
+
+
+.cart-card h1{
+
+    font-size:26px;
+
+}
+
+
+
+.cart-item{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+
+
+.cart-image img{
+
+    width:100%;
+
+    height:260px;
+
+}
+
+
+
+.cart-info{
+
+    text-align:center;
+
+}
+
+
+
+.quantity-control{
+
+    justify-content:center;
+
+}
+
+
+
+.cart-actions{
+
+    flex-direction:column;
+
+}
+
+
+
+.cart-actions a{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+
+}
+
+/* =====================================
+   صفحة نجاح إرسال الطلب
+   Order Success Page
+===================================== */
+
+
+.order-success-section{
+
+    padding:40px 8%;
+
+}
+
+
+
+.order-success-card{
+
+    max-width:750px;
+
+    margin:auto;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:2px solid rgba(212,175,55,.6);
+
+    border-radius:35px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 20px 50px rgba(72,1,15,.2);
+
+}
+
+
+
+
+
+.success-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:45px;
+
+    background:#48010f;
+
+    border-radius:50%;
+
+    border:2px solid #D4AF37;
+
+}
+
+
+
+
+
+
+.order-success-card h1{
+
+    color:#48010f;
+
+    font-size:35px;
+
+    font-weight:900;
+
+    margin:20px 0;
+
+}
+
+
+
+
+
+.success-message{
+
+    color:#48010f;
+
+    font-size:18px;
+
+    line-height:2;
+
+}
+
+
+
+
+
+
+
+.order-number-box{
+
+
+    margin:25px 0;
+
+
+    padding:15px;
+
+
+    background:#48010f;
+
+
+    color:white;
+
+
+    border-radius:25px;
+
+
+    border:1px solid #D4AF37;
+
+
+}
+
+
+
+.order-number-box span{
+
+
+    display:block;
+
+    color:#D4AF37;
+
+    margin-bottom:8px;
+
+}
+
+
+
+
+.order-number-box strong{
+
+    font-size:22px;
+
+}
+
+
+
+
+
+.order-success-card h2{
+
+
+    margin-top:35px;
+
+    color:#48010f;
+
+    font-size:25px;
+
+}
+
+
+
+
+
+
+
+.customer-info{
+
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+
+
+}
+
+
+
+
+
+.customer-info div{
+
+
+    background:rgba(255,255,255,.3);
+
+    padding:15px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(212,175,55,.5);
+
+
+}
+
+
+
+
+
+.customer-info strong{
+
+    color:#D4AF37;
+
+}
+
+
+
+
+.customer-info p{
+
+    color:#48010f;
+
+    margin:8px 0 0;
+
+}
+
+
+
+
+
+
+
+.success-product{
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin:20px 0;
+
+
+    padding:15px;
+
+
+    background:white;
+
+
+    border-radius:25px;
+
+
+    border:1px solid #D4AF37;
+
+
+    text-align:right;
+
+
+}
+
+
+
+
+
+
+
+.success-product img{
+
+
+    width:120px;
+
+    height:120px;
+
+
+    object-fit:cover;
+
+
+    border-radius:20px;
+
+
+    border:2px solid #D4AF37;
+
+
+}
+
+
+
+
+
+
+.success-product h3{
+
+    color:#48010f;
+
+}
+
+
+
+
+
+
+.success-product p{
+
+    color:#48010f;
+
+}
+
+
+
+.success-product strong{
+
+
+    color:#D4AF37;
+
+}
+
+
+
+
+
+
+
+.success-total{
+
+
+    margin-top:30px;
+
+
+    padding:20px;
+
+
+    background:#48010f;
+
+
+    color:white;
+
+
+    border-radius:25px;
+
+
+    font-size:22px;
+
+
+}
+
+
+
+
+.success-total strong{
+
+
+    color:#D4AF37;
+
+}
+
+
+
+
+
+
+
+.thanks{
+
+
+    margin:30px 0;
+
+    color:#48010f;
+
+    font-size:18px;
+
+    line-height:2;
+
+}
+
+
+
+
+
+
+.back-home{
+
+
+    display:inline-block;
+
+
+    padding:12px 40px;
+
+
+    background:#48010f;
+
+
+    color:#D4AF37;
+
+
+    border-radius:30px;
+
+
+    border:1px solid #D4AF37;
+
+
+    text-decoration:none;
+
+
+    font-weight:bold;
+
+
+    transition:.4s;
+
+
+}
+
+
+
+
+
+.back-home:hover{
+
+
+    background:#D4AF37;
+
+
+    color:#48010f;
+
+
+    transform:translateY(-5px);
+
+
+}
+
+
+
+
+
+
+
+/* الجوال */
+
+@media(max-width:600px){
+
+
+.order-success-section{
+
+    padding:20px 5%;
+
+}
+
+
+
+.order-success-card{
+
+    padding:20px;
+
+}
+
+
+
+.order-success-card h1{
+
+    font-size:26px;
+
+}
+
+
+
+.customer-info{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.success-product{
+
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+
+
+.success-product img{
+
+    width:100%;
+
+    height:250px;
+
+}
+
+
+
+.success-product-info{
+
+    text-align:center;
+
+}
+
+
+}
+
+
+/* ===============================
+   أسعار المنتجات مع الخصم
+================================ */
+
+/* أسعار الخصم داخل بطاقة المنتج */
+
+.discount-price{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:15px;
+
+}
+
+
+
+.old-price{
+
+    color:#888;
+
+    text-decoration:line-through;
+
+    font-size:14px;
+
+}
+
+
+
+.new-price{
+
+    color:#D4AF37;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+}
+
+
+.go-cart-btn{
+
+    display:inline-block;
+
+    margin-right:10px;
+
+    padding:8px 18px;
+
+    background:#48010f;
+
+    color:#D4AF37;
+
+    border:1px solid #D4AF37;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+}
+
+
+.go-cart-btn:hover{
+
+    opacity:.85;
+
+}
+
+.welcome-message{
+
+    margin:20px;
+
+    padding:20px;
+
+    background:#48010f;
+
+    color:white;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    border:2px solid #D4AF37;
+
+    box-shadow:
+    0 10px 30px rgba(72,1,15,.2);
+
+}
+
+
+.welcome-message h3{
+
+    color:#D4AF37;
+
+    margin-bottom:10px;
+
+    font-size:22px;
+
+}
+
+
+.welcome-message p{
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+a,
+button{
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
+a:active,
+button:active{
+
+    background-color: transparent;
+
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background: #800020;
+    color: #D4AF37;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+    background: #D4AF37;
+    color: #800020;
+}
+
+.footer-about-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===================================
+   صفحة من نحن - About Page
+=================================== */
+
+
+.about-hero {
+    background: linear-gradient(
+        135deg,
+        #800020,
+        #4b0015
+    );
+
+    color: white;
+    text-align: center;
+
+    padding: 45px 20px;
+
+    border-radius: 0 0 35px 35px;
+
+    margin-bottom: 35px;
+}
+
+
+.about-hero h1 {
+
+    color: #D4AF37;
+
+    font-size: 38px;
+
+    margin-bottom: 15px;
+
+    font-weight: bold;
+
+}
+
+
+.about-hero p {
+
+    font-size: 22px;
+
+    color: #ffffff;
+
+    margin-bottom: 15px;
+
+}
+
+
+.about-hero span {
+
+    display: block;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    line-height: 2;
+
+    font-size: 16px;
+
+}
+
+
+
+
+
+.about-section {
+
+    background: #ffffff;
+
+    margin: 25px auto;
+
+    padding: 30px;
+
+    max-width: 900px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+
+.about-section h2 {
+
+    color: #800020;
+
+    border-right: 5px solid #D4AF37;
+
+    padding-right: 12px;
+
+    margin-bottom: 20px;
+
+    font-size: 28px;
+
+}
+
+
+
+.about-section p {
+
+    line-height: 2;
+
+    font-size: 17px;
+
+    color: #444;
+
+}
+
+
+
+
+/* كروت المميزات */
+
+.about-cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 20px;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+}
+
+
+
+.about-card {
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #faf5f0
+    );
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    border-top: 4px solid #D4AF37;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+
+.about-card h3 {
+
+    color:#800020;
+
+    margin-bottom:15px;
+
+    font-size:22px;
+
+}
+
+
+
+.about-card p {
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+
+
+
+/* قائمة المنتجات */
+
+.about-section ul {
+
+    padding-right: 25px;
+
+}
+
+
+.about-section li {
+
+    margin-bottom: 12px;
+
+    font-size:17px;
+
+    color:#444;
+
+}
+
+
+
+
+/* معلومات المحل */
+
+.about-info {
+
+    background:#800020;
+
+    color:white;
+
+    padding:35px;
+
+    margin:35px auto;
+
+    max-width:900px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+}
+
+
+
+.about-info h2 {
+
+    color:#D4AF37;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.about-info p {
+
+    line-height:2;
+
+    font-size:17px;
+
+}
+
+
+
+
+
+
+/* للجوال */
+
+@media (max-width:768px){
+
+
+.about-hero h1 {
+
+    font-size:28px;
+
+}
+
+
+.about-hero p {
+
+    font-size:20px;
+
+}
+
+
+
+.about-section {
+
+    margin:15px;
+
+    padding:20px;
+
+}
+
+
+
+.about-section h2 {
+
+    font-size:23px;
+
+}
+
+
+
+.about-cards {
+
+    grid-template-columns:1fr;
+
+    margin:15px;
+
+}
+
+
+
+.about-card {
+
+    padding:20px;
+
+}
+
+
+.about-info {
+
+    margin:15px;
+
+    padding:25px 15px;
+
+}
+
+
+}
+
+/* ======================================
+   تحسين أداء الموقع - بدون تغيير التصميم
+====================================== */
+
+
+/* خط سريع وخفيف من خط النظام */
+body{
+    font-family:system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+
+/* تحسين عرض الصور */
+img{
+    max-width:100%;
+}
+
+
+/* منع المتصفح من عمل حسابات زائدة لبعض العناصر */
+.hero-card,
+.category-card,
+.product-card{
+    contain:layout paint;
+}
+
+
+/* تحسين حركة الصور */
+.hero-card img,
+.category-card .card-image img,
+.product-card .card-image img{
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+}
+
+
+/* تقليل استهلاك تأثير الزجاج على الجوال
+   مع المحافظة على نفس الشكل */
+@media(max-width:600px){
+
+    .hero-info,
+    .category-card,
+    .product-card,
+    .product-details-card,
+    .order-card,
+    .cart-card,
+    .order-success-card{
+
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+
+    }
+
+}
+
+
+/* تحسين الحركة في الأجهزة التي لا تحتاجها */
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+
+    }
+
+}

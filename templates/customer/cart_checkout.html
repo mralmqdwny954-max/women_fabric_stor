@@ -1,0 +1,455 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+<section class="order-section">
+
+
+<div class="order-card">
+
+
+<h1>
+إتمام الطلب
+</h1>
+
+
+
+
+
+<!-- عرض منتجات السلة -->
+
+{% for item in cart_items %}
+
+
+
+<div class="order-product">
+
+
+<img
+src="/{{ item.color.image_path }}"
+alt="{{ item.product.name }}"
+>
+
+
+
+
+<div>
+
+
+<h2>
+{{ item.product.name }}
+</h2>
+
+
+
+<p>
+اللون:
+{{ item.color.color_name }}
+</p>
+
+
+
+<p>
+الكمية:
+{{ item.quantity }}
+</p>
+
+
+
+<p>
+سعر الوحدة:
+{{ item.unit_price }} ريال يمني
+
+<br>
+
+يعادل :
+{{ item.unit_price|sar }} ريال سعودي
+
+</p>
+
+
+
+<strong>
+
+المجموع:
+{{ item.subtotal }} ريال يمني
+
+<br>
+
+يعادل :
+{{ item.subtotal|sar }} ريال سعودي
+
+</strong>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+
+
+
+<div class="cart-total">
+
+
+الإجمالي النهائي:
+
+{{ total }} ريال يمني
+
+<br>
+
+يعادل :
+
+{{ total|sar }} ريال سعودي
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- بيانات العميل -->
+
+
+<form 
+method="post"
+action="/cart/checkout"
+enctype="multipart/form-data"
+>
+
+
+
+<label>
+الاسم
+</label>
+
+
+<input
+type="text"
+name="customer_name"
+placeholder="اكتب اسمك"
+required
+>
+
+
+
+
+
+<label>
+رقم الجوال
+</label>
+
+
+<input
+type="text"
+name="phone"
+placeholder="رقم الجوال"
+required
+>
+
+
+
+
+
+<label>
+المدينة
+</label>
+
+
+<input
+type="text"
+name="city"
+placeholder="المدينة"
+required
+>
+
+
+
+
+
+<label>
+العنوان
+</label>
+
+
+<textarea
+name="address"
+placeholder="العنوان الكامل"
+required>
+</textarea>
+
+
+
+
+
+
+
+<!-- طرق الدفع -->
+
+
+<label>
+طريقة الدفع
+</label>
+
+
+
+<p class="payment-note">
+
+يرجى التحويل ثم رفع صورة إثبات الدفع
+
+</p>
+
+
+
+
+<div class="payment-methods">
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/amg.png">
+
+
+<h3>
+شركة العمقي
+</h3>
+
+
+<p>
+رقم الحساب:
+254139274
+</p>
+
+
+<input
+type="radio"
+name="payment"
+value="العمقي"
+required
+>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/bse.png">
+
+
+<h3>
+البسيري
+</h3>
+
+
+<p>
+رقم الحساب:
+239116170
+</p>
+
+
+<input
+type="radio"
+name="payment"
+value="البسيري"
+>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/pnd.png">
+
+
+<h3>
+بن دول
+</h3>
+
+
+<p>
+رقم الحساب:
+2321938
+</p>
+
+
+<input
+type="radio"
+name="payment"
+value="بن دول"
+>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/cre.png">
+
+
+<h3>
+الكريمي
+</h3>
+
+
+<p>
+رقم الحساب:
+1380625
+</p>
+
+
+<input
+type="radio"
+name="payment"
+value="الكريمي"
+>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/mas.png">
+
+
+<h3>
+Mastercard
+</h3>
+
+
+
+<input
+type="radio"
+name="payment"
+value="Mastercard"
+>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<label>
+إثبات الدفع
+</label>
+
+
+<p>
+بعد إتمام التحويل يرجى رفع صورة إثبات الدفع
+</p>
+
+
+<input
+type="file"
+name="payment_proof"
+accept="image/*"
+>
+
+
+
+
+
+
+
+
+<label>
+ملاحظات
+</label>
+
+
+<textarea
+name="customer_notes"
+placeholder="ملاحظات إضافية">
+</textarea>
+
+
+
+
+
+
+
+<button type="submit">
+
+إرسال الطلب
+
+</button>
+
+
+
+
+</form>
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+{% endblock %}

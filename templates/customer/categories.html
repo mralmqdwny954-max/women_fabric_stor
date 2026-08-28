@@ -1,0 +1,129 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+
+<section class="home-section">
+
+
+<h2 class="section-title">
+
+♛ الأقسام
+
+</h2>
+
+
+
+
+<div class="categories-grid">
+
+
+
+{% for category in categories %}
+
+
+
+<div class="card-wrapper category-card">
+
+
+
+
+
+<div class="card-image">
+
+
+<img
+src="/{{ category.image_path }}"
+alt="{{ category.name }}"
+>
+
+
+
+
+<div class="royal-icon">
+
+♛
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card-glass">
+
+
+
+<h3>
+
+{{ category.name }}
+
+</h3>
+
+
+
+
+<p>
+
+اختيار فاخر من أجمل الأقمشة
+
+</p>
+
+
+
+
+
+<a href="/category/{{ category.id }}">
+
+تصفح القسم
+
+</a>
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+{% else %}
+
+
+
+<h3 style="text-align:center;">
+
+لا توجد أقسام حالياً
+
+</h3>
+
+
+
+{% endfor %}
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+{% endblock %}

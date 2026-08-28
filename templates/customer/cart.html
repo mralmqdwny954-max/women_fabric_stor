@@ -1,0 +1,373 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+<section class="cart-section">
+
+
+<div class="cart-card">
+
+
+
+<h1>
+ 🛒
+ سلة المشتريات
+</h1>
+
+
+
+
+
+{% if cart_items %}
+
+
+
+{% for item in cart_items %}
+
+
+
+<div class="cart-item">
+
+
+
+
+
+<a 
+href="/cart/delete/{{ item.id }}"
+class="delete-cart-btn"
+title="حذف المنتج"
+>
+
+×
+</a>
+
+
+
+
+
+
+
+<div class="cart-image">
+
+
+<img
+src="/{{ item.color.image_path }}"
+alt="{{ item.product.name }}"
+>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="cart-info">
+
+
+
+<h2>
+{{ item.product.name }}
+</h2>
+
+
+
+
+
+<p class="cart-color">
+
+اللون:
+
+{% if item.color %}
+
+{{ item.color.color_name }}
+
+{% else %}
+
+بدون لون
+
+{% endif %}
+
+</p>
+
+
+
+
+
+
+
+<p class="cart-unit">
+
+الوحدة:
+
+{% if item.sale_unit %}
+
+{{ item.sale_unit }}
+
+{% else %}
+
+غير محدد
+
+{% endif %}
+
+</p>
+
+
+
+
+
+
+
+
+
+<div class="quantity-control">
+
+
+<span>
+الكمية:
+</span>
+
+
+
+{% if item.quantity > 1 %}
+
+
+<a 
+href="/cart/update/{{ item.id }}/{{ item.quantity - 1 }}"
+class="quantity-btn"
+>
+
+-
+
+</a>
+
+
+{% endif %}
+
+
+
+
+
+
+<span class="quantity-number">
+
+{{ item.quantity }}
+
+</span>
+
+
+
+
+
+
+
+<a 
+href="/cart/update/{{ item.id }}/{{ item.quantity + 1 }}"
+class="quantity-btn"
+>
+
++
+
+</a>
+
+
+
+</div>
+
+
+
+<p class="cart-price">
+
+سعر الوحدة:
+
+<strong>
+{{ item.unit_price }}
+</strong>
+
+ريال يمني
+
+<br>
+
+≈
+
+<strong>
+{{ item.unit_price|sar }}
+</strong>
+
+ريال سعودي
+
+</p>
+
+
+
+
+
+
+
+<p class="cart-subtotal">
+
+المجموع:
+
+<strong>
+{{ item.subtotal }}
+</strong>
+
+ريال يمني
+
+<br>
+
+≈
+
+<strong>
+{{ item.subtotal|sar }}
+</strong>
+
+ريال سعودي
+
+</p>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+{% endfor %}
+
+
+
+
+
+
+
+
+<div class="cart-total">
+
+
+<span>
+الإجمالي النهائي:
+</span>
+
+
+<strong>
+{{ total }}
+</strong>
+
+ريال يمني
+
+<br>
+
+≈
+
+<strong>
+{{ total|sar }}
+</strong>
+
+ريال سعودي
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="cart-actions">
+
+
+
+<a 
+class="order-btn"
+href="/cart/checkout"
+>
+
+إتمام الطلب عبر الموقع
+
+</a>
+
+
+
+
+
+
+<a 
+class="whatsapp-btn"
+href="/cart-whatsapp"
+>
+
+إتمام الطلب عبر الواتساب
+
+</a>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+{% else %}
+
+
+
+<div class="empty-cart">
+
+
+<h3>
+ السلة فارغة
+</h3>
+
+
+<p>
+لم تقم بإضافة أي منتجات حتى الآن.
+</p>
+
+
+<a href="/" class="order-btn">
+
+العودة للتسوق
+
+</a>
+
+
+</div>
+
+
+
+{% endif %}
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+{% endblock %}

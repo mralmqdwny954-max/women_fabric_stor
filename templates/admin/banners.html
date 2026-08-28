@@ -1,0 +1,335 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        إدارة البنرات
+    </h1>
+
+
+    <a href="/admin/banners/add" class="add-btn">
+        + إضافة بنر جديد
+    </a>
+
+
+</div>
+
+
+
+
+<div class="table-container">
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+الصورة
+</th>
+
+
+<th>
+العنوان
+</th>
+
+
+<th>
+الوصف
+</th>
+
+
+<th>
+نص الزر
+</th>
+
+
+<th>
+رابط الزر
+</th>
+
+
+<th>
+الحالة
+</th>
+
+
+<th>
+الترتيب
+</th>
+
+
+<th>
+الإجراءات
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+{% for banner in banners %}
+
+
+
+
+<tr>
+
+
+
+
+<td>
+
+
+{% if banner.image_path %}
+
+
+<img src="/{{ banner.image_path }}"
+width="100"
+height="60"
+style="object-fit:cover;border-radius:10px;">
+
+
+
+{% else %}
+
+
+لا توجد صورة
+
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+{{ banner.title }}
+
+</td>
+
+
+
+
+
+<td>
+
+{% if banner.subtitle %}
+
+{{ banner.subtitle }}
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
+
+
+
+
+
+<td>
+
+{% if banner.button_label %}
+
+{{ banner.button_label }}
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
+
+
+
+
+
+<td>
+
+{% if banner.button_link %}
+
+{{ banner.button_link }}
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
+
+
+
+
+
+<td>
+
+
+{% if banner.is_visible %}
+
+ظاهر
+
+
+{% else %}
+
+مخفي
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+{{ banner.display_order }}
+
+</td>
+
+
+
+
+
+<td>
+
+
+<a href="/admin/banners/{{ banner.id }}/edit"
+class="edit-btn">
+
+تعديل
+
+</a>
+
+
+
+
+
+{% if banner.is_visible %}
+
+
+<a href="/admin/banners/{{ banner.id }}/hide"
+class="delete-btn">
+
+إخفاء
+
+</a>
+
+
+{% else %}
+
+
+<a href="/admin/banners/{{ banner.id }}/show"
+class="add-btn">
+
+إظهار
+
+</a>
+
+
+{% endif %}
+
+
+
+
+
+
+<a href="/admin/banners/{{ banner.id }}/delete"
+class="delete-btn"
+onclick="return confirm('هل أنت متأكد من حذف هذا البنر؟');">
+
+حذف
+
+</a>
+
+
+
+
+
+</td>
+
+
+
+
+</tr>
+
+
+
+
+
+{% else %}
+
+
+
+
+
+<tr>
+
+
+<td colspan="8">
+
+
+لا توجد بنرات
+
+
+</td>
+
+
+</tr>
+
+
+
+
+
+{% endfor %}
+
+
+
+
+</tbody>
+
+
+
+
+</table>
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}

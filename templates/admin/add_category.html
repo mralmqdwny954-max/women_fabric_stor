@@ -1,0 +1,112 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        إضافة تصنيف جديد
+    </h1>
+
+</div>
+
+
+
+<div class="form-container">
+
+
+<form 
+method="post" 
+action="/admin/categories/add"
+enctype="multipart/form-data"
+>
+
+
+    <label>
+        اسم التصنيف
+    </label>
+
+    <input 
+        type="text" 
+        name="name"
+        placeholder="اكتب اسم التصنيف"
+        required
+    >
+
+
+
+    <label>
+        وصف التصنيف
+    </label>
+
+    <textarea 
+        name="description"
+        placeholder="اكتب وصف التصنيف">
+    </textarea>
+
+
+
+    <label>
+        صورة التصنيف
+    </label>
+
+
+    <input 
+        type="file"
+        name="image"
+        accept="image/*"
+        required
+    >
+
+
+
+    <label>
+        ترتيب العرض
+    </label>
+
+    <input 
+        type="number"
+        name="display_order"
+        value="0"
+    >
+
+
+
+    <label>
+        الحالة
+    </label>
+
+    <select name="is_visible">
+
+        <option value="true">
+            مفعل
+        </option>
+
+
+        <option value="false">
+            غير مفعل
+        </option>
+
+
+    </select>
+
+
+
+    <button class="add-btn" type="submit">
+
+        حفظ التصنيف
+
+    </button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+{% endblock %}

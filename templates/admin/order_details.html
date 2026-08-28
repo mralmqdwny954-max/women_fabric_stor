@@ -1,0 +1,525 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        تفاصيل الطلب: {{ order.order_number }}
+    </h1>
+
+</div>
+
+
+
+<div class="table-container">
+
+
+<table>
+
+
+<tr>
+<th>اسم العميل</th>
+<td>{{ order.customer_name }}</td>
+</tr>
+
+
+<tr>
+<th>الهاتف</th>
+<td>{{ order.phone }}</td>
+</tr>
+
+
+<tr>
+<th>المدينة</th>
+<td>{{ order.city }}</td>
+</tr>
+
+
+<tr>
+<th>العنوان</th>
+<td>{{ order.address }}</td>
+</tr>
+
+
+<tr>
+<th>طريقة الدفع</th>
+<td>{{ order.payment_method }}</td>
+</tr>
+
+
+<tr>
+<th>حالة الدفع</th>
+
+<td>
+
+{% if order.payment_status == "pending" %}
+
+بانتظار الدفع
+
+{% elif order.payment_status == "paid" %}
+
+مدفوع
+
+{% elif order.payment_status == "rejected" %}
+
+مرفوض
+
+{% endif %}
+
+</td>
+
+</tr>
+
+
+
+<tr>
+<th>حالة الطلب</th>
+
+<td>
+
+{% if order.order_status == "new" %}
+
+جديد
+
+{% elif order.order_status == "processing" %}
+
+قيد التجهيز
+
+{% elif order.order_status == "shipped" %}
+
+تم الشحن
+
+{% elif order.order_status == "completed" %}
+
+مكتمل
+
+{% elif order.order_status == "cancelled" %}
+
+ملغي
+
+{% endif %}
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<th>
+تاريخ الطلب
+</th>
+
+<td>
+
+{{ order.created_at.strftime("%Y-%m-%d %H:%M") }}
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<th>
+ملاحظات العميل
+</th>
+
+
+<td>
+
+{% if order.customer_notes %}
+
+{{ order.customer_notes }}
+
+{% else %}
+
+لا توجد ملاحظات
+
+{% endif %}
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<th>
+إثبات الدفع
+</th>
+
+
+<td>
+
+{% if order.payment_proof_path %}
+
+<a 
+href="/admin/orders/{{ order.id }}/payment-proof"
+class="add-btn">
+
+عرض إثبات الدفع
+
+</a>
+
+{% else %}
+
+لا يوجد إثبات دفع
+
+{% endif %}
+
+
+</td>
+
+
+</tr>
+
+
+</table>
+
+
+</div>
+
+
+
+<br>
+
+<br>
+
+
+
+<div class="table-container">
+
+
+<h2>
+تحديث حالة الطلب والدفع
+</h2>
+
+
+
+<form method="post" action="/admin/orders/{{ order.id }}/update-status">
+
+
+
+<label>
+حالة الدفع
+</label>
+
+
+<select name="payment_status">
+
+
+<option value="pending"
+{% if order.payment_status == "pending" %}
+selected
+{% endif %}
+>
+بانتظار الدفع
+</option>
+
+
+<option value="paid"
+{% if order.payment_status == "paid" %}
+selected
+{% endif %}
+>
+مدفوع
+</option>
+
+
+<option value="rejected"
+{% if order.payment_status == "rejected" %}
+selected
+{% endif %}
+>
+مرفوض
+</option>
+
+
+</select>
+
+
+<label>
+حالة الطلب
+</label>
+
+
+<select name="order_status">
+
+
+<option value="new"
+{% if order.order_status == "new" %}
+selected
+{% endif %}
+>
+جديد
+</option>
+
+
+<option value="processing"
+{% if order.order_status == "processing" %}
+selected
+{% endif %}
+>
+قيد التجهيز
+</option>
+
+
+<option value="shipped"
+{% if order.order_status == "shipped" %}
+selected
+{% endif %}
+>
+تم الشحن
+</option>
+
+
+<option value="completed"
+{% if order.order_status == "completed" %}
+selected
+{% endif %}
+>
+مكتمل
+</option>
+
+
+<option value="cancelled"
+{% if order.order_status == "cancelled" %}
+selected
+{% endif %}
+>
+ملغي
+</option>
+
+
+</select>
+
+
+
+<button type="submit" class="add-btn">
+
+حفظ التعديل
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+<br>
+
+
+<div class="table-container">
+
+
+<h2>
+المنتجات داخل الطلب
+</h2>
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+صورة اللون
+</th>
+
+
+<th>
+المنتج
+</th>
+
+
+<th>
+اللون
+</th>
+
+
+<th>
+الكمية
+</th>
+
+
+<th>
+الوحدة
+</th>
+
+
+<th>
+سعر القطعة
+</th>
+
+
+<th>
+المجموع
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+
+{% for item in items %}
+
+
+<tr>
+
+
+<td>
+
+
+{% if item.color %}
+
+<img 
+src="/{{ item.color.image_path }}"
+width="80"
+height="80"
+style="object-fit: cover; border-radius:10px;"
+>
+
+
+{% else %}
+
+لا توجد صورة
+
+{% endif %}
+
+
+</td>
+
+
+
+<td>
+{{ item.product.name }}
+</td>
+
+
+
+<td>
+
+{% if item.color %}
+
+{{ item.color.color_name }}
+
+{% else %}
+
+بدون لون
+
+{% endif %}
+
+</td>
+
+
+
+<td>
+{{ item.quantity }}
+</td>
+
+
+
+
+<td>
+
+{% if item.sale_unit %}
+
+{{ item.sale_unit }}
+
+{% else %}
+
+غير محدد
+
+{% endif %}
+
+</td>
+
+
+
+
+<td>
+{{ item.unit_price }}
+</td>
+
+
+
+<td>
+{{ item.subtotal }}
+</td>
+
+
+
+</tr>
+
+
+{% else %}
+
+
+<tr>
+
+<td colspan="7">
+
+لا توجد منتجات
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+<br>
+
+
+<h2>
+
+إجمالي الطلب:
+{{ total }}
+
+</h2>
+
+
+</div>
+
+
+
+<br>
+
+
+
+<a href="/admin/orders" class="add-btn">
+
+العودة إلى الطلبات
+
+</a>
+
+
+
+{% endblock %}

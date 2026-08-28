@@ -1,0 +1,168 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+
+<section class="home-section">
+
+
+<h2 class="section-title">
+
+♛
+
+{{ category.name }}
+
+</h2>
+
+
+
+
+<div class="products-grid">
+
+
+
+{% for product in products %}
+
+
+
+<div class="card-wrapper product-card">
+
+
+
+<div class="card-image">
+
+
+<img
+src="/{{ product.main_image_path }}"
+alt="{{ product.name }}"
+loading="lazy"
+>
+
+
+<div class="royal-icon">
+
+♛
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card-glass">
+
+
+
+<h3>
+
+{{ product.name }}
+
+</h3>
+
+
+
+
+
+
+{% if product.sale_price %}
+
+
+<div class="product-price discount-price">
+
+<span class="old-price">
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+{{ product.regular_price|sar }} ر.س
+
+</span>
+
+
+<span class="new-price">
+
+{{ product.sale_price }} ر.ي
+
+<br>
+
+{{ product.sale_price|sar }} ر.س
+
+</span>
+
+
+</div>
+
+
+{% else %}
+
+
+<div class="product-price">
+
+{{ product.regular_price }} ر.ي
+
+<br>
+
+{{ product.regular_price|sar }} ر.س
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+<a href="/products/{{ product.id }}">
+
+عرض المنتج
+
+</a>
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+{% else %}
+
+
+
+<h3 style="text-align:center;">
+
+لا توجد منتجات في هذا القسم حالياً
+
+</h3>
+
+
+
+{% endfor %}
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+{% endblock %}

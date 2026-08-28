@@ -1,0 +1,284 @@
+{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+<section class="order-success-section">
+
+
+<div class="order-success-card">
+
+
+
+<div class="success-icon">
+
+✅
+
+</div>
+
+
+
+
+<h1>
+تم إرسال طلبك بنجاح
+</h1>
+
+
+
+
+<p class="success-message">
+
+شكرًا لك، تم استلام طلبك وجاري مراجعته من قبل فريقنا.
+
+</p>
+
+
+
+
+
+<div class="order-number-box">
+
+<span>
+رقم الطلب
+</span>
+
+<strong>
+{{ order.order_number }}
+</strong>
+
+</div>
+
+
+
+
+
+
+
+<h2>
+تفاصيل العميل
+</h2>
+
+
+
+
+<div class="customer-info">
+
+
+
+<div>
+
+<strong>
+الاسم
+</strong>
+
+<p>
+{{ order.customer_name }}
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<strong>
+رقم الجوال
+</strong>
+
+<p>
+{{ order.phone }}
+</p>
+
+</div>
+
+
+
+
+
+<div>
+
+<strong>
+المدينة
+</strong>
+
+<p>
+{{ order.city }}
+</p>
+
+</div>
+
+
+
+<div>
+
+<strong>
+العنوان
+</strong>
+
+<p>
+{{ order.address }}
+</p>
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<h2>
+المنتجات المطلوبة
+</h2>
+
+
+
+
+
+<div class="success-products">
+
+
+
+{% for item in order.items %}
+
+
+
+
+<div class="success-product">
+
+
+
+<img
+src="/{{ item.item_image_path }}"
+>
+
+
+
+
+<div class="success-product-info">
+
+
+<h3>
+{{ item.product.name }}
+</h3>
+
+
+
+<p>
+الكمية:
+{{ item.quantity }}
+</p>
+
+
+
+<p>
+سعر الوحدة:
+{{ item.unit_price }} ريال يمني
+</p>
+
+
+
+
+<strong>
+
+المجموع:
+{{ item.subtotal }} ريال يمني
+
+</strong>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="success-total">
+
+
+الإجمالي النهائي:
+
+
+<strong>
+
+{{ order.items | sum(attribute='subtotal') }}
+
+ريال يمني
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+
+
+<p class="thanks">
+
+
+🌹 شكراً لاختيارك متجرنا
+
+<br>
+
+نتمنى لك تجربة تسوق مميزة
+
+
+</p>
+
+
+
+
+
+
+
+<a href="/" class="back-home">
+
+العودة للرئيسية
+
+</a>
+
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+{% endblock %}

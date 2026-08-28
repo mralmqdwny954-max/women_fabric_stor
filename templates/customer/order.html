@@ -1,0 +1,407 @@
+.{% extends "customer/base.html" %}
+
+
+{% block content %}
+
+
+<section class="order-section">
+
+
+<div class="order-card">
+
+
+
+<h1>
+إتمام طلب المنتج
+</h1>
+
+
+
+
+<div class="order-product">
+
+
+
+<img
+src="/{{ color.image_path }}"
+alt="{{ product.name }}"
+>
+
+
+
+<div>
+
+<h2>
+{{ product.name }}
+</h2>
+
+
+<p>
+اللون المختار:
+{{ color.color_name }}
+</p>
+
+
+
+{% if product.sale_price %}
+
+<strong>
+{{ product.sale_price }} ريال يمني
+</strong>
+
+
+{% else %}
+
+<strong>
+{{ product.regular_price }} ريال يمني
+</strong>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<form enctype="multipart/form-data">
+
+
+
+
+
+<label>
+الاسم
+</label>
+
+
+<input 
+type="text"
+name="customer_name"
+placeholder="اكتب اسمك"
+>
+
+
+
+
+
+<label>
+رقم الجوال
+</label>
+
+
+<input 
+type="text"
+name="phone"
+placeholder="رقم الجوال"
+>
+
+
+
+
+
+<label>
+المدينة
+</label>
+
+
+<input 
+type="text"
+name="city"
+placeholder="المدينة"
+>
+
+
+
+
+
+<label>
+العنوان
+</label>
+
+
+<textarea
+name="address"
+placeholder="العنوان الكامل">
+</textarea>
+
+
+
+
+
+
+
+<!-- طرق الدفع -->
+
+
+<label>
+طريقة الدفع
+</label>
+
+
+<p class="payment-note">
+
+يرجى التحويل إلى أحد الحسابات التالية، ثم رفع صورة إثبات الدفع لإكمال الطلب.
+
+</p>
+
+
+
+
+<div class="payment-methods">
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/amg.png">
+
+
+<h3>
+حسابنا لدى شركة العمقي
+</h3>
+
+
+<p>
+رقم الحساب:
+254139274
+</p>
+
+
+<input 
+type="radio"
+name="payment"
+value="العمقي"
+>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/bse.png">
+
+
+<h3>
+حسابنا لدى البسيري
+</h3>
+
+
+<p>
+رقم الحساب:
+239116170
+</p>
+
+
+<input 
+type="radio"
+name="payment"
+value="البسيري"
+>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/pnd.png">
+
+
+<h3>
+حسابنا لدى شركة بن دول
+</h3>
+
+
+<p>
+رقم الحساب:
+2321938
+</p>
+
+
+<input 
+type="radio"
+name="payment"
+value="بن دول"
+>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/cre.png">
+
+
+<h3>
+حسابنا بنك الكريمي (خدمة حاسب)
+</h3>
+
+
+<p>
+رقم الحساب:
+1380625
+</p>
+
+
+<input 
+type="radio"
+name="payment"
+value="الكريمي"
+>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="payment-card">
+
+
+<img src="/static/customer/images/mas.png">
+
+
+<h3>
+Mastercard
+</h3>
+
+
+<p>
+رقم الحساب:
+</p>
+
+
+<input 
+type="radio"
+name="payment"
+value="Mastercard"
+>
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- إثبات الدفع -->
+
+
+
+<label>
+إثبات الدفع
+</label>
+
+
+<p>
+بعد إتمام الدفع يرجى رفع صورة إثبات الدفع
+</p>
+
+
+
+<input
+type="file"
+name="payment_proof"
+accept="image/*"
+>
+
+
+
+
+
+
+
+
+
+
+<label>
+ملاحظات
+</label>
+
+
+<textarea
+name="customer_notes"
+placeholder="ملاحظات إضافية">
+</textarea>
+
+
+
+
+
+
+
+<button>
+إرسال الطلب
+</button>
+
+
+
+
+
+
+</form>
+
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+{% endblock %}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        لوحة التحكم - بن سلمان للأقمشة بحضرموت
+    </title>
+
+
+    <link rel="stylesheet" href="/static/admin/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="admin-container">
+
+
+    <!-- القائمة الجانبية -->
+
+    <aside class="sidebar">
+
+
+        <h2>
+            بن سلمان للأقمشة
+            <br>
+            بحضرموت
+        </h2>
+
+
+        <ul>
+
+            <li>
+                <a href="/admin/">
+                    الرئيسية
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/admin/products">
+                    المنتجات
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/admin/categories">
+                    التصنيفات
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/admin/orders">
+                    الطلبات
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/admin/banners">
+                    البنرات
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/admin/logout">
+                    تسجيل الخروج
+                </a>
+            </li>
+
+
+        </ul>
+
+
+    </aside>
+
+
+
+    <!-- المحتوى الرئيسي -->
+
+    <main class="content">
+
+
+        <div style="
+        background:#fff;
+        padding:15px;
+        margin-bottom:20px;
+        border-radius:10px;
+        text-align:center;
+        font-weight:bold;
+        ">
+
+            لوحة تحكم
+            <br>
+            بن سلمان للأقمشة بحضرموت
+
+        </div>
+
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+    </main>
+
+
+
+</div>
+
+
+<script src="/static/admin/js/main.js"></script>
+
+
+</body>
+
+</html>

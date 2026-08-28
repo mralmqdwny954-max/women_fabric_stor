@@ -1,0 +1,247 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h1>
+        إضافة بنر جديد
+    </h1>
+
+</div>
+
+
+
+<div class="form-container">
+
+
+<form 
+method="post" 
+action="/admin/banners/add"
+enctype="multipart/form-data"
+>
+
+
+
+<label>
+عنوان البنر
+</label>
+
+<input 
+type="text"
+name="title"
+placeholder="عنوان البنر"
+>
+
+
+
+
+<label>
+وصف البنر
+</label>
+
+<textarea
+name="subtitle"
+placeholder="وصف البنر">
+</textarea>
+
+
+
+
+
+<label>
+صورة البنر
+</label>
+
+
+<input 
+type="file"
+name="image"
+accept="image/*"
+required
+>
+
+
+
+
+
+<label>
+حالة البنر
+</label>
+
+
+<select name="is_visible">
+
+<option value="true">
+ظاهر
+</option>
+
+
+<option value="false">
+مخفي
+</option>
+
+
+</select>
+
+
+
+
+
+<label>
+ترتيب العرض
+</label>
+
+
+<input 
+type="number"
+name="display_order"
+value="0"
+>
+
+
+
+
+
+<label>
+نص الزر
+</label>
+
+
+<input 
+type="text"
+name="button_label"
+placeholder="مثال: تسوق الآن"
+>
+
+
+
+
+
+
+<label>
+نوع رابط الزر
+</label>
+
+
+<select name="link_type">
+
+
+<option value="">
+بدون رابط
+</option>
+
+
+<option value="products">
+كل المنتجات
+</option>
+
+
+<option value="category">
+قسم معين
+</option>
+
+
+<option value="product">
+منتج معين
+</option>
+
+
+</select>
+
+
+
+
+
+
+<label>
+اختر القسم
+</label>
+
+
+<select name="category_id">
+
+
+<option value="">
+اختر القسم
+</option>
+
+
+{% for category in categories %}
+
+<option value="{{ category.id }}">
+
+{{ category.name }}
+
+</option>
+
+
+{% endfor %}
+
+
+</select>
+
+
+
+
+
+
+<label>
+اختر المنتج
+</label>
+
+
+<select name="product_id">
+
+
+<option value="">
+اختر المنتج
+</option>
+
+
+{% for product in products %}
+
+<option value="{{ product.id }}">
+
+{{ product.name }}
+
+</option>
+
+
+{% endfor %}
+
+
+</select>
+
+
+
+
+
+<p>
+اترك الاختيارات فارغة إذا اخترت بدون رابط أو كل المنتجات
+</p>
+
+
+
+
+
+<br>
+
+
+<button class="add-btn" type="submit">
+
+حفظ البنر
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+{% endblock %}
