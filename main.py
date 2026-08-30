@@ -167,7 +167,7 @@ app.include_router(cart_router)
 create_tables()
 
 
-# إنشاء حساب الأدمن في Render إذا لم يكن موجودًا
+# إنشاء أو تحديث حساب الأدمن في Render
 def create_default_admin():
 
     db = SessionLocal()
@@ -176,20 +176,9 @@ def create_default_admin():
         username = os.getenv("ADMIN_USERNAME")
         password = os.getenv("ADMIN_PASSWORD")
 
-        # إذا لم توجد المتغيرات، لا يتم إنشاء أدمن
+        # التأكد من وجود المتغيرات في Render
         if not username or not password:
             print("ADMIN_USERNAME or ADMIN_PASSWORD not found")
-            return
-
-        # التأكد أن الحساب غير موجود مسبقًا
-        existing_admin = (
-            db.query(Admin)
-            .filter(Admin.username == username)
-            .first()
-        )
-
-        if existing_admin:
-            print("Admin already exists")
             return
 
         # تشفير كلمة المرور
@@ -198,12 +187,23 @@ def create_default_admin():
             deprecated="auto"
         )
 
-        password_hash = pwd_context.hash(password)
+        # نبحث عن أول حساب أدمن موجود
+        existing_admin = db.query(Admin).first()
 
-        # إنشاء الحساب
+        # إذا الحساب موجود، نحدث بياناته
+        if existing_admin:
+            existing_admin.username = username
+            existing_admin.password_hash = pwd_context.hash(password)
+
+            db.commit()
+
+            print("Admin updated successfully")
+            return
+
+        # إذا لا يوجد أي أدمن، ننشئ حساب جديد
         new_admin = Admin(
             username=username,
-            password_hash=password_hash
+            password_hash=pwd_context.hash(password)
         )
 
         db.add(new_admin)
@@ -213,11 +213,12 @@ def create_default_admin():
 
     except Exception as error:
         db.rollback()
-        print("Error creating admin:")
+        print("Error creating/updating admin:")
         print(error)
 
     finally:
         db.close()
+
 
 
 # تشغيل إنشاء الأدمن
