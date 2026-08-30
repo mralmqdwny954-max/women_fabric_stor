@@ -1,17 +1,112 @@
+# from fastapi.staticfiles import StaticFiles
+# from fastapi.templating import Jinja2Templates
+# from routers.admin import router as admin_router
+# from routers.customer import router as customer_router
+# from routers.cart import router as cart_router
+
+# # إنشاء تطبيق FastAPI
+# from fastapi import FastAPI
+# from starlette.middleware.sessions import SessionMiddleware
+# # استيراد قاعدة البيانات
+# from database import engine, create_tables
+# # استيراد الموديلات
+# from models import Product
+
+# from routers.categories import router as categories_router
+# from routers.products import router as products_router
+# from routers.product_colors import router as product_colors_router
+# from routers.banners import router as banners_router
+# from routers.orders import router as orders_router
+# from routers.order_items import router as order_items_router
+
+# # إنشاء التطبيق
+# app = FastAPI(
+#     title="Women Fabric Store API",
+#     debug=True
+# )
+
+# # ربط ملفات التصميم
+# app.mount(
+#     "/static",
+#     StaticFiles(directory="static"),
+#     name="static"
+# )
+
+
+# # ربط مجلد الصور المرفوعة
+# app.mount(
+#     "/uploads",
+#     StaticFiles(directory="uploads"),
+#     name="uploads"
+# )
+
+# app.add_middleware(
+#     SessionMiddleware,
+#     secret_key="women_fabric_secret_key"
+# )
+
+
+# # إعداد صفحات HTML
+# templates = Jinja2Templates(
+#     directory="templates"
+# )
+
+# app.include_router(categories_router)
+# app.include_router(products_router)
+# app.include_router(product_colors_router)
+# app.include_router(banners_router)
+# app.include_router(orders_router)
+# app.include_router(order_items_router)
+# app.include_router(admin_router)
+# app.include_router(customer_router)
+# app.include_router(cart_router)
+# # إنشاء جداول قاعدة البيانات
+# create_tables()
+
+
+# # اختبار الاتصال بقاعدة البيانات
+# try:
+#     connection = engine.connect()
+#     print("Database connection successful")
+#     connection.close()
+
+# except Exception as error:
+#     print("Database connection failed:")
+#     print(error)
+
+# # الصفحة الرئيسية للتأكد أن التطبيق يعمل
+
+# @app.get("/")
+# def home():
+#     return {
+#         "message": "Women Fabric Store API is working"
+#     }
+
+
+
+# #127.0.0.1:8000/admin/    http://127.0.0.1:8000/
+
+# #uvicorn main:app --reload
+
+
+import os
+
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from starlette.middleware.sessions import SessionMiddleware
+from passlib.context import CryptContext
+
+# قاعدة البيانات
+from database import engine, create_tables, SessionLocal
+
+# الموديلات
+from models import Product, Admin
+
+# Routers
 from routers.admin import router as admin_router
 from routers.customer import router as customer_router
 from routers.cart import router as cart_router
-
-# إنشاء تطبيق FastAPI
-from fastapi import FastAPI
-from starlette.middleware.sessions import SessionMiddleware
-# استيراد قاعدة البيانات
-from database import engine, create_tables
-# استيراد الموديلات
-from models import Product
-
 from routers.categories import router as categories_router
 from routers.products import router as products_router
 from routers.product_colors import router as product_colors_router
@@ -19,11 +114,13 @@ from routers.banners import router as banners_router
 from routers.orders import router as orders_router
 from routers.order_items import router as order_items_router
 
+
 # إنشاء التطبيق
 app = FastAPI(
     title="Women Fabric Store API",
     debug=True
 )
+
 
 # ربط ملفات التصميم
 app.mount(
@@ -40,6 +137,8 @@ app.mount(
     name="uploads"
 )
 
+
+# الجلسات
 app.add_middleware(
     SessionMiddleware,
     secret_key="women_fabric_secret_key"
@@ -51,6 +150,8 @@ templates = Jinja2Templates(
     directory="templates"
 )
 
+
+# ربط الـ Routers
 app.include_router(categories_router)
 app.include_router(products_router)
 app.include_router(product_colors_router)
@@ -60,22 +161,84 @@ app.include_router(order_items_router)
 app.include_router(admin_router)
 app.include_router(customer_router)
 app.include_router(cart_router)
+
+
 # إنشاء جداول قاعدة البيانات
 create_tables()
+
+
+# إنشاء حساب الأدمن في Render إذا لم يكن موجودًا
+def create_default_admin():
+
+    db = SessionLocal()
+
+    try:
+        username = os.getenv("ADMIN_USERNAME")
+        password = os.getenv("ADMIN_PASSWORD")
+
+        # إذا لم توجد المتغيرات، لا يتم إنشاء أدمن
+        if not username or not password:
+            print("ADMIN_USERNAME or ADMIN_PASSWORD not found")
+            return
+
+        # التأكد أن الحساب غير موجود مسبقًا
+        existing_admin = (
+            db.query(Admin)
+            .filter(Admin.username == username)
+            .first()
+        )
+
+        if existing_admin:
+            print("Admin already exists")
+            return
+
+        # تشفير كلمة المرور
+        pwd_context = CryptContext(
+            schemes=["bcrypt"],
+            deprecated="auto"
+        )
+
+        password_hash = pwd_context.hash(password)
+
+        # إنشاء الحساب
+        new_admin = Admin(
+            username=username,
+            password_hash=password_hash
+        )
+
+        db.add(new_admin)
+        db.commit()
+
+        print("Admin created successfully")
+
+    except Exception as error:
+        db.rollback()
+        print("Error creating admin:")
+        print(error)
+
+    finally:
+        db.close()
+
+
+# تشغيل إنشاء الأدمن
+create_default_admin()
 
 
 # اختبار الاتصال بقاعدة البيانات
 try:
     connection = engine.connect()
+
     print("Database connection successful")
+
     connection.close()
 
 except Exception as error:
+
     print("Database connection failed:")
     print(error)
 
-# الصفحة الرئيسية للتأكد أن التطبيق يعمل
 
+# الصفحة الرئيسية للتأكد أن التطبيق يعمل
 @app.get("/")
 def home():
     return {
@@ -83,7 +246,11 @@ def home():
     }
 
 
-
-#127.0.0.1:8000/admin/    http://127.0.0.1:8000/
-
-#uvicorn main:app --reload
+# تشغيل محلي:
+# uvicorn main:app --reload
+#
+# لوحة الأدمن محليًا:
+# http://127.0.0.1:8000/admin/
+#
+# لوحة الأدمن على Render:
+# https://women-fabric-stor.onrender.com/admin/login
