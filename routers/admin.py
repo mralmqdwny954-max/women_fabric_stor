@@ -6,12 +6,12 @@ from models import Category, Product, Order, Banner, ProductColor, Admin
 from sqlalchemy.orm import joinedload
 from passlib.context import CryptContext
 from sqlalchemy.exc import IntegrityError
-from utils.upload import save_image
+from utils.upload import save_image, delete_image
+
 router = APIRouter(
     prefix="/admin",
     tags=["Admin"]
 )
-
 
 templates = Jinja2Templates(
     directory="templates"
@@ -37,6 +37,7 @@ pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
 )
+
 @router.get("/", response_class=HTMLResponse)
 def admin_dashboard(request: Request):
 
@@ -48,28 +49,21 @@ def admin_dashboard(request: Request):
             status_code=303
         )
 
-
     db = SessionLocal()
-
 
     # عدد المنتجات
     products_count = db.query(Product).count()
 
-
     # عدد التصنيفات
     categories_count = db.query(Category).count()
-
 
     # عدد الطلبات
     orders_count = db.query(Order).count()
 
-
     # عدد البنرات
     banners_count = db.query(Banner).count()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -81,6 +75,7 @@ def admin_dashboard(request: Request):
             "banners_count": banners_count
         }
     )
+
 # صفحة المنتجات
 # صفحة المنتجات
 @router.get("/products", response_class=HTMLResponse)
@@ -94,19 +89,15 @@ def products_page(request: Request):
             status_code=303
         )
 
-
     db = SessionLocal()
-
 
     # جلب جميع المنتجات من قاعدة البيانات
     products = db.query(Product).options(
         joinedload(Product.category)
     ).all()
 
-
     # إغلاق الاتصال بقاعدة البيانات
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -116,7 +107,6 @@ def products_page(request: Request):
             "error": request.query_params.get("error")
         }
     )
-
 
 # صفحة الطلبات
 
@@ -131,15 +121,11 @@ def orders_page(request: Request):
             status_code=303
         )
 
-
     db = SessionLocal()
-
 
     orders = db.query(Order).all()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -148,7 +134,6 @@ def orders_page(request: Request):
             "orders": orders
         }
     )
-
 
 # حذف طلب
 
@@ -166,15 +151,11 @@ def delete_order(
             status_code=303
         )
 
-
     db = SessionLocal()
-
 
     order = db.query(Order).filter(
         Order.id == order_id
     ).first()
-
-
 
     if order:
 
@@ -182,10 +163,7 @@ def delete_order(
 
         db.commit()
 
-
-
     db.close()
-
 
     return RedirectResponse(
         url="/admin/orders",
@@ -204,28 +182,23 @@ def order_details_page(
     if auth != True:
         return auth
 
-
     db = SessionLocal()
 
     order = db.query(Order).filter(
         Order.id == order_id
     ).first()
 
-
     from models import OrderItem
 
-
     items = db.query(OrderItem).filter(
-    OrderItem.order_id == order_id
+        OrderItem.order_id == order_id
     ).all()
-
 
     # حساب إجمالي الطلب
     total = 0
 
     for item in items:
         total += item.quantity * item.unit_price
-
 
     # تحميل المنتجات والألوان قبل إغلاق قاعدة البيانات
     for item in items:
@@ -235,19 +208,17 @@ def order_details_page(
         if item.color:
             item.color
 
-
     db.close()
 
-
     return templates.TemplateResponse(
-    request=request,
-    name="admin/order_details.html",
-    context={
-        "order": order,
-        "items": items,
-        "total": total
-    }
-)
+        request=request,
+        name="admin/order_details.html",
+        context={
+            "order": order,
+            "items": items,
+            "total": total
+        }
+    )
 
 # تحديث حالة الطلب والدفع
 
@@ -264,11 +235,9 @@ def update_order_status(
 
     db = SessionLocal()
 
-
     order = db.query(Order).filter(
         Order.id == order_id
     ).first()
-
 
     if order:
 
@@ -276,13 +245,9 @@ def update_order_status(
 
         order.order_status = order_status
 
-
         db.commit()
 
-
-
     db.close()
-
 
     return RedirectResponse(
         url=f"/admin/orders/{order_id}",
@@ -302,18 +267,13 @@ def payment_proof_page(
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     order = db.query(Order).filter(
         Order.id == order_id
     ).first()
 
-
     db.close()
-
-
 
     return templates.TemplateResponse(
         request=request,
@@ -335,15 +295,11 @@ def banners_page(request: Request):
             status_code=303
         )
 
-
     db = SessionLocal()
-
 
     banners = db.query(Banner).all()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -361,19 +317,13 @@ def add_banner_page(request: Request):
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     categories = db.query(Category).all()
 
-
     products = db.query(Product).all()
 
-
     db.close()
-
-
 
     return templates.TemplateResponse(
         request=request,
@@ -386,6 +336,7 @@ def add_banner_page(request: Request):
 
         }
     )
+
 # حفظ البنر الجديد مع رفع الصورة
 @router.post("/banners/add")
 def add_banner(
@@ -410,10 +361,7 @@ def add_banner(
 
 ):
 
-
     db = SessionLocal()
-
-
 
     # حفظ صورة البنر داخل مجلد banners
 
@@ -422,31 +370,21 @@ def add_banner(
         "banners"
     )
 
-
-
     # إنشاء رابط الزر تلقائياً
 
     button_link = None
-
-
 
     if link_type == "products":
 
         button_link = "/products"
 
-
     elif link_type == "category" and category_id:
 
-          button_link = "/products?category=" + str(category_id)
-
+        button_link = "/products?category=" + str(category_id)
 
     elif link_type == "product" and product_id:
 
         button_link = "/products/" + str(product_id)
-
-
-
-
 
     new_banner = Banner(
 
@@ -466,28 +404,19 @@ def add_banner(
 
     )
 
-
-
     db.add(new_banner)
-
-
 
     db.commit()
 
-
-
     db.refresh(new_banner)
 
-
-
     db.close()
-
-
 
     return RedirectResponse(
         url="/admin/banners",
         status_code=303
     )
+
 # صفحة التصنيفات
 @router.get("/categories", response_class=HTMLResponse)
 def categories_page(request: Request):
@@ -500,20 +429,15 @@ def categories_page(request: Request):
             status_code=303
         )
 
-
     db = SessionLocal()
 
-
     categories = db.query(Category).all()
-
 
     for category in categories:
 
         category.products_count = len(category.products)
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -534,34 +458,23 @@ def category_products_page(
     category_id: int
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     category = db.query(Category).filter(
         Category.id == category_id
     ).first()
 
-
-
     products = db.query(Product).filter(
         Product.category_id == category_id
     ).all()
 
-
-
     db.close()
-
-
 
     return templates.TemplateResponse(
         request=request,
@@ -582,7 +495,6 @@ def add_category_page(request: Request):
         name="admin/add_category.html"
     )
 
-
 # حفظ التصنيف الجديد مع رفع الصورة
 
 @router.post("/categories/add")
@@ -600,18 +512,13 @@ def add_category(
 
 ):
 
-
     db = SessionLocal()
-
-
 
     # حفظ صورة التصنيف داخل مجلد categories
     image_path = save_image(
         image,
         "categories"
     )
-
-
 
     new_category = Category(
 
@@ -627,33 +534,22 @@ def add_category(
 
     )
 
-
-
     # إضافة التصنيف إلى قاعدة البيانات
     db.add(new_category)
-
-
 
     # حفظ البيانات
     db.commit()
 
-
-
     # تحديث البيانات بعد الحفظ
     db.refresh(new_category)
 
-
-
     # إغلاق الاتصال
     db.close()
-
-
 
     return RedirectResponse(
         url="/admin/categories",
         status_code=303
     )
-
 
 # صفحة إضافة منتج جديد
 
@@ -665,7 +561,6 @@ def add_product_page(request: Request):
     categories = db.query(Category).all()
 
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -710,25 +605,18 @@ def add_product(
 
     db = SessionLocal()
 
-
-
     # التأكد من وجود السعر الأساسي
 
     if regular_price is None:
 
-
         db.close()
-
 
         return RedirectResponse(
             url="/admin/products/add?error=price",
             status_code=303
         )
 
-
-
     try:
-
 
         # حفظ الصورة
 
@@ -736,8 +624,6 @@ def add_product(
             image,
             "products"
         )
-
-
 
         new_product = Product(
 
@@ -767,38 +653,24 @@ def add_product(
 
         )
 
-
-
         db.add(new_product)
-
 
         db.commit()
 
-
         db.refresh(new_product)
 
-
-
         db.close()
-
-
 
         return RedirectResponse(
             url="/admin/products",
             status_code=303
         )
 
-
-
     except IntegrityError:
-
 
         db.rollback()
 
-
         db.close()
-
-
 
         return RedirectResponse(
             url="/admin/products/add?error=code",
@@ -818,21 +690,17 @@ def product_colors_page(
     if auth != True:
         return auth
 
-
     db = SessionLocal()
 
     product = db.query(Product).filter(
         Product.id == product_id
     ).first()
 
-
     colors = db.query(ProductColor).filter(
         ProductColor.product_id == product_id
     ).all()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -842,7 +710,6 @@ def product_colors_page(
             "colors": colors
         }
     )
-
 
 # صفحة إضافة لون جديد للمنتج
 
@@ -855,23 +722,18 @@ def add_product_color_page(
     product_id: int
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     product = db.query(Product).filter(
         Product.id == product_id
     ).first()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -900,21 +762,17 @@ def add_product_color(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     image_path = save_image(
         image,
         "colors"
     )
-
 
     new_color = ProductColor(
 
@@ -930,7 +788,6 @@ def add_product_color(
 
     )
 
-
     db.add(new_color)
 
     db.commit()
@@ -939,12 +796,10 @@ def add_product_color(
 
     db.close()
 
-
     return RedirectResponse(
         url=f"/admin/products/{product_id}/colors",
         status_code=303
     )
-
 
 # صفحة تعديل البنر
 # صفحة تعديل البنر
@@ -958,28 +813,19 @@ def edit_banner_page(
 
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     banner = db.query(Banner).filter(
         Banner.id == banner_id
     ).first()
 
-
-
     db.close()
-
-
 
     return templates.TemplateResponse(
         request=request,
@@ -988,7 +834,6 @@ def edit_banner_page(
             "banner": banner
         }
     )
-
 
 # حفظ تعديل البنر مع إمكانية تغيير الصورة
 
@@ -1017,46 +862,30 @@ def edit_banner(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     banner = db.query(Banner).filter(
         Banner.id == banner_id
     ).first()
 
-
-
     button_link = None
-
-
 
     if link_type == "products":
 
         button_link = "/products"
 
-
-
     elif link_type == "category" and link_id:
 
         button_link = "/products?category=" + str(link_id)
 
-
-
     elif link_type == "product" and link_id:
 
         button_link = "/products/" + str(link_id)
-
-
-
 
     banner.title = title
 
@@ -1070,24 +899,20 @@ def edit_banner(
 
     banner.button_link = button_link
 
-
-
-
     # تغيير الصورة فقط إذا اختار المستخدم صورة جديدة
+
+    old_image_path = None
 
     if image and image.filename:
 
+        old_image_path = banner.image_path
 
         new_image_path = save_image(
             image,
             "banners"
         )
 
-
         banner.image_path = new_image_path
-
-
-
 
     db.commit()
 
@@ -1095,7 +920,8 @@ def edit_banner(
 
     db.close()
 
-
+    if old_image_path:
+        delete_image(old_image_path)
 
     return RedirectResponse(
         url="/admin/banners",
@@ -1113,42 +939,37 @@ def delete_banner(
 
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     banner = db.query(Banner).filter(
         Banner.id == banner_id
     ).first()
 
-
+    image_path = None
 
     if banner:
+
+        image_path = banner.image_path
 
         db.delete(banner)
 
         db.commit()
 
-
-
     db.close()
 
-
+    if image_path:
+        delete_image(image_path)
 
     return RedirectResponse(
         url="/admin/banners",
         status_code=303
     )
-
 
 # إخفاء البنر
 
@@ -1161,23 +982,16 @@ def hide_banner(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     banner = db.query(Banner).filter(
         Banner.id == banner_id
     ).first()
-
-
 
     if banner:
 
@@ -1185,20 +999,12 @@ def hide_banner(
 
         db.commit()
 
-
-
     db.close()
-
-
 
     return RedirectResponse(
         url="/admin/banners",
         status_code=303
     )
-
-
-
-
 
 # إظهار البنر
 
@@ -1211,23 +1017,16 @@ def show_banner(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     banner = db.query(Banner).filter(
         Banner.id == banner_id
     ).first()
-
-
 
     if banner:
 
@@ -1235,11 +1034,7 @@ def show_banner(
 
         db.commit()
 
-
-
     db.close()
-
-
 
     return RedirectResponse(
         url="/admin/banners",
@@ -1259,17 +1054,13 @@ def edit_category_page(
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     category = db.query(Category).filter(
         Category.id == category_id
     ).first()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -1278,8 +1069,6 @@ def edit_category_page(
             "category": category
         }
     )
-
-
 
 # حفظ تعديل التصنيف مع إمكانية تغيير الصورة
 # حفظ تعديل التصنيف مع إمكانية تغيير الصورة
@@ -1302,24 +1091,17 @@ def edit_category(
 
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     category = db.query(Category).filter(
         Category.id == category_id
     ).first()
-
-
 
     category.name = name
 
@@ -1329,33 +1111,29 @@ def edit_category(
 
     category.is_visible = is_visible
 
-
-
     # تغيير الصورة فقط إذا اختار المستخدم صورة جديدة
+
+    old_image_path = None
 
     if image and image.filename:
 
+        old_image_path = category.image_path
 
         new_image_path = save_image(
             image,
             "categories"
         )
 
-
         category.image_path = new_image_path
-
-
-
 
     db.commit()
 
-
     db.refresh(category)
-
 
     db.close()
 
-
+    if old_image_path:
+        delete_image(old_image_path)
 
     return RedirectResponse(
         url="/admin/categories",
@@ -1374,34 +1152,26 @@ def delete_category(
 
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     category = db.query(Category).filter(
         Category.id == category_id
     ).first()
 
-
+    image_path = None
 
     if category:
-
 
         # فحص هل يوجد منتجات داخل التصنيف
         products_count = db.query(Product).filter(
             Product.category_id == category_id
         ).count()
-
-
 
         if products_count > 0:
 
@@ -1412,24 +1182,22 @@ def delete_category(
                 status_code=303
             )
 
-
+        image_path = category.image_path
 
         # حذف التصنيف إذا لا يوجد منتجات
         db.delete(category)
 
         db.commit()
 
-
-
     db.close()
 
-
+    if image_path:
+        delete_image(image_path)
 
     return RedirectResponse(
         url="/admin/categories",
         status_code=303
     )
-
 
 # إخفاء التصنيف
 # إخفاء التصنيف
@@ -1443,24 +1211,17 @@ def hide_category(
 
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     category = db.query(Category).filter(
         Category.id == category_id
     ).first()
-
-
 
     if category:
 
@@ -1468,18 +1229,12 @@ def hide_category(
 
         db.commit()
 
-
-
     db.close()
-
-
 
     return RedirectResponse(
         url="/admin/categories",
         status_code=303
     )
-
-
 
 # إظهار التصنيف
 # إظهار التصنيف
@@ -1493,24 +1248,17 @@ def show_category(
 
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     category = db.query(Category).filter(
         Category.id == category_id
     ).first()
-
-
 
     if category:
 
@@ -1518,11 +1266,7 @@ def show_category(
 
         db.commit()
 
-
-
     db.close()
-
-
 
     return RedirectResponse(
         url="/admin/categories",
@@ -1542,20 +1286,15 @@ def edit_product_page(
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     product = db.query(Product).filter(
         Product.id == product_id
     ).first()
 
-
     categories = db.query(Category).all()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -1599,16 +1338,11 @@ def edit_product(
 
 ):
 
-
     db = SessionLocal()
-
-
 
     product = db.query(Product).filter(
         Product.id == product_id
     ).first()
-
-
 
     product.product_code = product_code
 
@@ -1616,23 +1350,20 @@ def edit_product(
 
     product.description = description
 
-
-
     # تغيير الصورة فقط إذا اختار المستخدم صورة جديدة
+
+    old_image_path = None
 
     if image and image.filename:
 
+        old_image_path = product.main_image_path
 
         new_image_path = save_image(
             image,
             "products"
         )
 
-
         product.main_image_path = new_image_path
-
-
-
 
     product.regular_price = regular_price
 
@@ -1650,22 +1381,20 @@ def edit_product(
 
     product.category_id = category_id
 
-
-
     db.commit()
-
 
     db.refresh(product)
 
-
     db.close()
 
-
+    if old_image_path:
+        delete_image(old_image_path)
 
     return RedirectResponse(
         url="/admin/products",
         status_code=303
     )
+
 # حذف المنتج
 
 @router.get("/products/{product_id}/delete")
@@ -1677,23 +1406,21 @@ def delete_product(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     product = db.query(Product).filter(
         Product.id == product_id
     ).first()
 
+    product_image_path = None
+    color_image_paths = []
 
     if product:
-
 
         # التأكد هل المنتج مستخدم في الطلبات
         from models import OrderItem
@@ -1701,7 +1428,6 @@ def delete_product(
         order_item = db.query(OrderItem).filter(
             OrderItem.product_id == product_id
         ).first()
-
 
         if order_item:
 
@@ -1712,7 +1438,17 @@ def delete_product(
                 status_code=303
             )
 
+        product_image_path = product.main_image_path
 
+        product_colors = db.query(ProductColor).filter(
+            ProductColor.product_id == product_id
+        ).all()
+
+        color_image_paths = [
+            color.image_path
+            for color in product_colors
+            if color.image_path
+        ]
 
         # حذف ألوان المنتج أولاً
         db.query(ProductColor).filter(
@@ -1721,23 +1457,23 @@ def delete_product(
             synchronize_session=False
         )
 
-
         # حذف المنتج
         db.delete(product)
 
         db.commit()
 
-
-
     db.close()
 
+    if product_image_path:
+        delete_image(product_image_path)
+
+    for color_image_path in color_image_paths:
+        delete_image(color_image_path)
 
     return RedirectResponse(
         url="/admin/products",
         status_code=303
     )
-
-
 
 # إخفاء المنتج
 @router.get("/products/{product_id}/hide")
@@ -1749,12 +1485,10 @@ def hide_product(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
-
 
     db = SessionLocal()
 
@@ -1762,22 +1496,18 @@ def hide_product(
         Product.id == product_id
     ).first()
 
-
     if product:
 
         product.is_visible = False
 
         db.commit()
 
-
     db.close()
-
 
     return RedirectResponse(
         url="/admin/products",
         status_code=303
     )
-
 
 # إظهار المنتج
 
@@ -1790,20 +1520,16 @@ def show_product(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     product = db.query(Product).filter(
         Product.id == product_id
     ).first()
-
 
     if product:
 
@@ -1811,9 +1537,7 @@ def show_product(
 
         db.commit()
 
-
     db.close()
-
 
     return RedirectResponse(
         url="/admin/products",
@@ -1837,22 +1561,17 @@ def edit_product_color_page(
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     product = db.query(Product).filter(
         Product.id == product_id
     ).first()
 
-
     color = db.query(ProductColor).filter(
         ProductColor.id == color_id
     ).first()
 
-
     db.close()
-
 
     return templates.TemplateResponse(
         request=request,
@@ -1886,24 +1605,17 @@ def edit_product_color(
 
 ):
 
-
     # التأكد أن الأدمن مسجل دخول
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
-
     db = SessionLocal()
-
-
 
     color = db.query(ProductColor).filter(
         ProductColor.id == color_id
     ).first()
-
-
 
     color.color_name = color_name
 
@@ -1911,33 +1623,29 @@ def edit_product_color(
 
     color.is_visible = is_visible
 
-
-
     # تغيير الصورة فقط إذا اختار المستخدم صورة جديدة
+
+    old_image_path = None
 
     if image and image.filename:
 
+        old_image_path = color.image_path
 
         new_image_path = save_image(
             image,
             "colors"
         )
 
-
         color.image_path = new_image_path
-
-
-
 
     db.commit()
 
-
     db.refresh(color)
-
 
     db.close()
 
-
+    if old_image_path:
+        delete_image(old_image_path)
 
     return RedirectResponse(
         url=f"/admin/products/{product_id}/colors",
@@ -1962,33 +1670,26 @@ def delete_product_color(
 
 ):
 
-
     auth = check_admin_session(request)
 
     if auth != True:
         return auth
 
-
     db = SessionLocal()
-
 
     color = db.query(ProductColor).filter(
         ProductColor.id == color_id
     ).first()
 
-
+    image_path = None
 
     if color:
 
-
         from models import OrderItem
-
 
         order_item = db.query(OrderItem).filter(
             OrderItem.color_id == color_id
         ).first()
-
-
 
         if order_item:
 
@@ -1999,23 +1700,21 @@ def delete_product_color(
                 status_code=303
             )
 
-
+        image_path = color.image_path
 
         db.delete(color)
 
         db.commit()
 
-
-
     db.close()
 
-
+    if image_path:
+        delete_image(image_path)
 
     return RedirectResponse(
         url=f"/admin/products/{product_id}/colors",
         status_code=303
     )
-
 
 # إخفاء لون المنتج
 
@@ -2029,11 +1728,9 @@ def hide_product_color(
 
     db = SessionLocal()
 
-
     color = db.query(ProductColor).filter(
         ProductColor.id == color_id
     ).first()
-
 
     if color:
 
@@ -2041,16 +1738,12 @@ def hide_product_color(
 
         db.commit()
 
-
     db.close()
-
 
     return RedirectResponse(
         url=f"/admin/products/{product_id}/colors",
         status_code=303
     )
-
-
 
 # إظهار لون المنتج
 
@@ -2064,11 +1757,9 @@ def show_product_color(
 
     db = SessionLocal()
 
-
     color = db.query(ProductColor).filter(
         ProductColor.id == color_id
     ).first()
-
 
     if color:
 
@@ -2076,15 +1767,12 @@ def show_product_color(
 
         db.commit()
 
-
     db.close()
-
 
     return RedirectResponse(
         url=f"/admin/products/{product_id}/colors",
         status_code=303
     )
-
 
 # صفحة تسجيل دخول الأدمن
 
@@ -2178,11 +1866,7 @@ def admin_logout(
     # حذف بيانات الأدمن من الجلسة
     request.session.clear()
 
-
     return RedirectResponse(
         url="/admin/login",
         status_code=303
     )
-
-
-

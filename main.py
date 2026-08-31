@@ -96,6 +96,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
 from passlib.context import CryptContext
+from fastapi.responses import RedirectResponse
+
 
 # قاعدة البيانات
 from database import engine, create_tables, SessionLocal
@@ -121,7 +123,21 @@ app = FastAPI(
     debug=True
 )
 
+# عرض صور Cloudinary مع الحفاظ على طريقة عرض الصور الحالية في HTML
+@app.get("/media/{folder}/{filename}")
+def cloudinary_image(folder: str, filename: str):
 
+    cloud_name = os.getenv("CLOUDINARY_CLOUD_NAME")
+
+    image_url = (
+        f"https://res.cloudinary.com/{cloud_name}"
+        f"/image/upload/women_fabric_store/{folder}/{filename}"
+    )
+
+    return RedirectResponse(
+        url=image_url,
+        status_code=307
+    )
 # ربط ملفات التصميم
 app.mount(
     "/static",
