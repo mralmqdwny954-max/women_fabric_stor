@@ -2106,28 +2106,26 @@ def admin_login_page(request: Request):
         name="admin/login.html"
     )
 
-# معالجة تسجيل الدخول
 @router.post("/login")
 def admin_login(
-
     request: Request,
-
     username: str = Form(...),
     password: str = Form(...)
-
 ):
 
     db = SessionLocal()
 
+    # إزالة المسافات الزائدة من اسم المستخدم
+    username = username.strip()
 
-    # البحث عن الأدمن حسب اسم المستخدم
+    # البحث عن الأدمن
     admin = db.query(Admin).filter(
         Admin.username == username
     ).first()
 
-
-    # إذا لم يوجد المستخدم
+    # إذا اسم المستخدم غير موجود
     if not admin:
+        print("LOGIN DEBUG: USERNAME NOT FOUND")
 
         db.close()
 
@@ -2136,6 +2134,7 @@ def admin_login(
             status_code=303
         )
 
+    print("LOGIN DEBUG: USERNAME FOUND")
 
     # التحقق من كلمة المرور
     password_correct = pwd_context.verify(
@@ -2143,9 +2142,9 @@ def admin_login(
         admin.password_hash
     )
 
-
-    # إذا كانت كلمة المرور خاطئة
+    # إذا كلمة المرور خطأ
     if not password_correct:
+        print("LOGIN DEBUG: PASSWORD INCORRECT")
 
         db.close()
 
@@ -2154,24 +2153,20 @@ def admin_login(
             status_code=303
         )
 
+    print("LOGIN DEBUG: PASSWORD CORRECT")
 
-    # حفظ بيانات الأدمن داخل الجلسة
+    # حفظ بيانات الأدمن في الجلسة
     request.session["admin_id"] = admin.id
-
     request.session["admin_username"] = admin.username
 
-
-    # إغلاق الاتصال
     db.close()
 
+    print("LOGIN DEBUG: LOGIN SUCCESS")
 
-    # الانتقال إلى لوحة التحكم
     return RedirectResponse(
         url="/admin/",
         status_code=303
     )
-    ط
-
 
 # تسجيل خروج الأدمن
 
