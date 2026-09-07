@@ -1,5 +1,39 @@
 {% extends "customer/base.html" %}
 
+
+{% block title %}
+{% if category %}
+{{ category.name }} | بن سلمان للأقمشة والمطرزات بحضرموت
+{% else %}
+جميع المنتجات | بن سلمان للأقمشة والمطرزات بحضرموت
+{% endif %}
+{% endblock %}
+
+
+{% block meta_description %}
+{% if category %}
+تصفح منتجات {{ category.name }} لدى بن سلمان للأقمشة والمطرزات بحضرموت، واكتشف تشكيلة متنوعة من الخامات والألوان.
+{% else %}
+تصفح منتجات بن سلمان للأقمشة والمطرزات بحضرموت من أقمشة الفساتين والمطرزات والأقمشة الصافية والشعبية والدروع والجلابيات والشيفونات والحرائر والاسترتشات.
+{% endif %}
+{% endblock %}
+
+
+{% block canonical %}
+{% if category %}
+<link
+rel="canonical"
+href="https://binsalmanhadramout.com/category/{{ category.id }}"
+>
+{% else %}
+<link
+rel="canonical"
+href="https://binsalmanhadramout.com/products"
+>
+{% endif %}
+{% endblock %}
+
+
 {% block content %}
 
 
