@@ -23,6 +23,46 @@ href="https://binsalmanhadramout.com/products/{{ product.id }}"
 {% endblock %}
 
 
+{% block extra_head %}
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+
+    "name": {{ product.name|tojson }},
+
+    "description": {% if product.description %}{{ product.description|tojson }}{% else %}{{ ("تسوق " ~ product.name ~ " من بن سلمان للأقمشة والمطرزات بحضرموت.")|tojson }}{% endif %},
+
+    "sku": {{ product.product_code|tojson }},
+
+    "brand": {
+        "@type": "Brand",
+        "name": "بن سلمان للأقمشة والمطرزات بحضرموت"
+    }
+
+    {% if product.main_image_path %}
+    ,
+    "image": [
+        "https://binsalmanhadramout.com/{{ product.main_image_path }}"
+    ]
+    {% endif %}
+
+    {% if product.sale_price or product.regular_price %}
+    ,
+    "offers": {
+        "@type": "Offer",
+        "url": "https://binsalmanhadramout.com/products/{{ product.id }}",
+        "priceCurrency": "YER",
+        "price": {% if product.sale_price %}{{ product.sale_price|float }}{% else %}{{ product.regular_price|float }}{% endif %}
+    }
+    {% endif %}
+}
+</script>
+
+{% endblock %}
+
+
 {% block content %}
 
 
