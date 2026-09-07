@@ -9,8 +9,28 @@
 
 
     <title>
+        {% block title %}
         بن سلمان للأقمشة والمطرزات بحضرموت
+        {% endblock %}
     </title>
+
+
+    <meta
+        name="description"
+        content="{% block meta_description %}بن سلمان للأقمشة والمطرزات بحضرموت - تشكيلة متنوعة من الأقمشة النسائية والمطرزات والخامات بألوان متعددة.{% endblock %}"
+    >
+
+
+    {% block canonical %}
+    <link
+        rel="canonical"
+        href="https://binsalmanhadramout.com{{ request.url.path }}"
+    >
+    {% endblock %}
+
+
+    {% block extra_head %}
+    {% endblock %}
 
 
     <link rel="stylesheet" href="/static/customer/css/style.css?v=2">
@@ -220,7 +240,7 @@
 
     <div class="copyright">
 
-        © 2026 بن سلمان للأقمشة والمطرزات - جميع الحقوق محفوظة
+        ©️ 2026 بن سلمان للأقمشة والمطرزات - جميع الحقوق محفوظة
 
     </div>
 

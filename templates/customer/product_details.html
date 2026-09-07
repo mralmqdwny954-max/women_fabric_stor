@@ -1,6 +1,28 @@
 {% extends "customer/base.html" %}
 
 
+{% block title %}
+{{ product.name }} | بن سلمان للأقمشة والمطرزات بحضرموت
+{% endblock %}
+
+
+{% block meta_description %}
+{% if product.description %}
+{{ product.description }}
+{% else %}
+تسوق {{ product.name }} من بن سلمان للأقمشة والمطرزات بحضرموت. أقمشة وخامات مميزة بألوان متعددة مع خدمة التوصيل.
+{% endif %}
+{% endblock %}
+
+
+{% block canonical %}
+<link
+rel="canonical"
+href="https://binsalmanhadramout.com/products/{{ product.id }}"
+>
+{% endblock %}
+
+
 {% block content %}
 
 

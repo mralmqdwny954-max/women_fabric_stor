@@ -1,6 +1,24 @@
 {% extends "customer/base.html" %}
 
 
+{% block title %}
+{{ category.name }} | بن سلمان للأقمشة والمطرزات بحضرموت
+{% endblock %}
+
+
+{% block meta_description %}
+تصفح منتجات قسم {{ category.name }} لدى بن سلمان للأقمشة والمطرزات بحضرموت، مع تشكيلة متنوعة من الأقمشة والخامات والألوان.
+{% endblock %}
+
+
+{% block canonical %}
+<link
+rel="canonical"
+href="https://binsalmanhadramout.com/category/{{ category.id }}"
+>
+{% endblock %}
+
+
 {% block content %}
 
 
