@@ -7,6 +7,7 @@ from sqlalchemy.orm import joinedload
 from passlib.context import CryptContext
 from sqlalchemy.exc import IntegrityError
 from utils.upload import save_image, delete_image
+import time
 
 router = APIRouter(
     prefix="/admin",
@@ -620,10 +621,14 @@ def add_product(
 
         # حفظ الصورة
 
+        start_upload = time.time()
+
         image_path = save_image(
-            image,
-            "products"
+             image,
+             "products"
         )
+
+        print("IMAGE UPLOAD TIME:", time.time() - start_upload)
 
         new_product = Product(
 
