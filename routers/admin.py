@@ -1394,7 +1394,6 @@ def edit_product(
         url="/admin/products",
         status_code=303
     )
-
 # حذف المنتج
 
 @router.get("/products/{product_id}/delete")
@@ -1423,7 +1422,7 @@ def delete_product(
     if product:
 
         # التأكد هل المنتج مستخدم في الطلبات
-        from models import OrderItem
+        from models import OrderItem, CartItem
 
         order_item = db.query(OrderItem).filter(
             OrderItem.product_id == product_id
@@ -1450,7 +1449,14 @@ def delete_product(
             if color.image_path
         ]
 
-        # حذف ألوان المنتج أولاً
+        # حذف عناصر السلة المرتبطة بالمنتج أولاً
+        db.query(CartItem).filter(
+            CartItem.product_id == product_id
+        ).delete(
+            synchronize_session=False
+        )
+
+        # حذف ألوان المنتج
         db.query(ProductColor).filter(
             ProductColor.product_id == product_id
         ).delete(
