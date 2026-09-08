@@ -50,8 +50,8 @@ def save_image(file, folder):
         image_buffer,
         "WEBP",
         quality=80,
-        optimize=True,
-        method=6
+        optimize=False,
+        method=4
     )
 
     image_buffer.seek(0)
@@ -100,7 +100,7 @@ def delete_image(image_path):
         cloudinary.uploader.destroy(
             public_id,
             resource_type="image",
-            invalidate=True
+            invalidate=False
         )
 
     except Exception as error:
