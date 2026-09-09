@@ -25,6 +25,9 @@ def save_image(file, folder):
     # فتح الصورة
     image = Image.open(file.file)
 
+# تصحيح اتجاه صور الجوال حسب بيانات EXIF
+    image = ImageOps.exif_transpose(image)
+
     # إعدادات البنرات
     if folder == "banners":
         target_size = (1600, 700)
