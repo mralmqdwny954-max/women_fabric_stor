@@ -660,11 +660,13 @@ def add_product(
 
         db.add(new_product)
 
+        start_db = time.time()
+
         db.commit()
 
-        db.refresh(new_product)
+        print("DB COMMIT TIME:", time.time() - start_db)
 
-        db.close()
+        db.refresh(new_product)
 
         return RedirectResponse(
             url="/admin/products",
