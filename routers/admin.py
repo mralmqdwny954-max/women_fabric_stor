@@ -1658,12 +1658,8 @@ def edit_product_color(
         url=f"/admin/products/{product_id}/colors",
         status_code=303
     )
-
 # حذف لون المنتج مع التحقق من الطلبات
 
-@router.get(
-    "/products/{product_id}/colors/{color_id}/delete"
-)
 @router.get(
     "/products/{product_id}/colors/{color_id}/delete"
 )
@@ -1692,8 +1688,9 @@ def delete_product_color(
 
     if color:
 
-        from models import OrderItem
+        from models import OrderItem, CartItem
 
+        # منع حذف اللون إذا كان مرتبطًا بطلب
         order_item = db.query(OrderItem).filter(
             OrderItem.color_id == color_id
         ).first()
@@ -1706,6 +1703,13 @@ def delete_product_color(
                 url=f"/admin/products/{product_id}/colors?error=has_orders",
                 status_code=303
             )
+
+        # حذف أي عناصر سلة مرتبطة بهذا اللون
+        db.query(CartItem).filter(
+            CartItem.color_id == color_id
+        ).delete(
+            synchronize_session=False
+        )
 
         image_path = color.image_path
 
